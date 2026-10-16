@@ -1,0 +1,41 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: s.$gap-5;
+  min-height: 100dvh;
+  padding: s.$gap-8 s.$gutter-mobile;
+  text-align: center;
+
+  &__code {
+    color: var(--brand-gold-text);
+
+    @include t.display;
+  }
+
+  &__title {
+    color: var(--text-primary);
+
+    @include t.title-medium;
+  }
+
+  &__description {
+    color: var(--text-secondary);
+
+    @include t.body-medium;
+  }
+
+  &__link {
+    margin-top: s.$gap-5;
+    padding: s.$gap-4 s.$gap-7;
+    border-radius: s.$shape-lg;
+    color: var(--action-on-primary);
+    background-color: var(--action-primary);
+
+    @include t.label-large;
+  }
+}

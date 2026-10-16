@@ -1,0 +1,9 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+.title {
+  margin-bottom: s.$gap-8;
+  color: var(--text-primary);
+
+  @include t.title-small;
+}

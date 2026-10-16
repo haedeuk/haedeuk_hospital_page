@@ -1,0 +1,64 @@
+import { LUNCH_BREAK, OPENING_HOURS } from '@/constants/clinic';
+import styles from './WeekHours.module.scss';
+
+const DAY_LABELS: Record<string, string> = {
+  Monday: '월',
+  Tuesday: '화',
+  Wednesday: '수',
+  Thursday: '목',
+  Friday: '금',
+  Saturday: '토',
+  Sunday: '일',
+  PublicHolidays: '공휴일',
+};
+
+// 하루를 08시~21시 막대로 본다. 문 여는 시간이 같아 막대 길이가 곧 진료가 끝나는 시각이다.
+const DAY_START = 8;
+const DAY_END = 21;
+const hourOf = (time: string) => Number.parseInt(time.split(':')[0], 10);
+
+const DAYS = OPENING_HOURS.flatMap((hours) =>
+  hours.days.map((day) => ({
+    key: day,
+    label: DAY_LABELS[day],
+    open: hours.open,
+    close: hours.close,
+    ratio: (hourOf(hours.close) - DAY_START) / (DAY_END - DAY_START),
+    isWeekend: hours.label !== '평일',
+  })),
+);
+
+// 365일 진료라는 이 병원의 가장 큰 특징을 일주일 막대로 보여 준다.
+export default function WeekHours() {
+  return (
+    <section className={styles.week} aria-labelledby="week-title">
+      <div className={styles.week__inner}>
+        <div className={styles.week__text}>
+          <h2 className={styles.week__title} id="week-title">
+            일요일과 공휴일에도
+            <br />
+            문을 엽니다
+          </h2>
+          <p className={styles.week__description}>
+            아침 8시에 진료를 시작합니다. 평일은 저녁 9시, 주말과 공휴일은 오후 5시까지 진료하고 점심시간은{' '}
+            {LUNCH_BREAK.open}부터 {LUNCH_BREAK.close}까지입니다.
+          </p>
+        </div>
+        <ol className={styles.week__days}>
+          {DAYS.map((day) => (
+            <li key={day.key} className={`${styles.week__day} ${day.isWeekend ? styles['week__day--weekend'] : ''}`}>
+              <span className={styles.week__label}>{day.label}</span>
+              <span className={styles.week__track} aria-hidden="true">
+                <span className={styles.week__bar} style={{ height: `${day.ratio * 100}%` }} />
+              </span>
+              <span className={styles.week__time}>
+                <time dateTime={day.open}>{day.open}</time>
+                <time dateTime={day.close}>{day.close}</time>
+              </span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+  );
+}

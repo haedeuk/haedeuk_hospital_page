@@ -1,0 +1,22 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/utils/media" as media;
+
+.console {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+
+  @include media.desktop-up {
+    flex-direction: row;
+  }
+
+  &__main {
+    flex: 1;
+    min-width: 0;
+    padding: s.$gap-7 s.$gutter-mobile s.$gap-11;
+
+    @include media.desktop-up {
+      padding: s.$gap-10 s.$gap-10 s.$gap-12;
+    }
+  }
+}

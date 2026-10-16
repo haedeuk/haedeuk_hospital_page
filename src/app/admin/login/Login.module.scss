@@ -1,0 +1,40 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: s.$gap-8 s.$gutter-mobile;
+  background:
+    radial-gradient(circle at 20% 10%, var(--brand-gold-tint), transparent 50%),
+    var(--surface-page);
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-7;
+    width: min(400px, 100%);
+    padding: s.$gap-9 s.$gap-8;
+    border: 1px solid var(--border-subtle);
+    border-radius: s.$shape-2xl;
+    background-color: var(--surface-card);
+    box-shadow: var(--shadow-raised);
+  }
+
+  &__logo {
+    width: 180px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__title {
+    color: var(--text-primary);
+
+    @include t.title-small;
+  }
+}

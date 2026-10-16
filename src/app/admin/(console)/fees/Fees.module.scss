@@ -1,0 +1,19 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+.head {
+  margin-bottom: s.$gap-8;
+
+  &__title {
+    color: var(--text-primary);
+
+    @include t.title-small;
+  }
+
+  &__description {
+    margin-top: s.$gap-2;
+    color: var(--text-tertiary);
+
+    @include t.body-small;
+  }
+}

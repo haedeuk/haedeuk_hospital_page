@@ -1,0 +1,88 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: s.$gap-3;
+
+  @include media.tablet-up {
+    grid-column: auto;
+    justify-content: flex-end;
+  }
+
+  &__move {
+    display: flex;
+    gap: s.$gap-2;
+    min-width: 76px;
+  }
+
+  &__edit {
+    padding: s.$gap-2 s.$gap-3;
+    border-radius: s.$shape-sm;
+    color: var(--text-secondary);
+
+    @include t.label-small;
+
+    &:hover {
+      color: var(--text-primary);
+      background-color: var(--surface-subtle);
+    }
+  }
+
+  &__error {
+    flex-basis: 100%;
+    color: var(--status-danger);
+    text-align: right;
+
+    @include t.label-small;
+  }
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: s.$gap-3;
+  min-width: 76px;
+  padding: s.$gap-2;
+  border: 0;
+  color: var(--text-tertiary);
+  background: none;
+
+  @include t.label-small;
+
+  &__track {
+    position: relative;
+    width: 36px;
+    height: 20px;
+    border-radius: s.$shape-full;
+    background-color: var(--border-strong);
+    transition: background-color 0.2s ease;
+  }
+
+  &__thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--surface-card);
+    transition: transform 0.2s ease;
+  }
+
+  &--on {
+    color: var(--status-success);
+
+    .toggle__track {
+      background-color: var(--status-success);
+    }
+
+    .toggle__thumb {
+      transform: translateX(16px);
+    }
+  }
+}

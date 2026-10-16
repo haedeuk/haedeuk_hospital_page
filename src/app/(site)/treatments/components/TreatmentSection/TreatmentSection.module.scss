@@ -1,0 +1,94 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.section {
+  display: grid;
+  gap: s.$gap-7;
+  align-items: center;
+  padding-block: s.$gap-11;
+  scroll-margin-top: 130px;
+
+  @include c.container;
+
+  @include media.desktop-up {
+    grid-template-columns: 1fr 1fr;
+    gap: s.$gap-12;
+    padding-block: s.$gap-12;
+  }
+
+  & + & {
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  &--reversed {
+    @include media.desktop-up {
+      .section__media {
+        order: 2;
+      }
+    }
+  }
+
+  &__media {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: s.$shape-2xl;
+    background-color: var(--surface-muted);
+
+    img {
+      object-fit: cover;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-5;
+  }
+
+  &__title {
+    color: var(--text-primary);
+
+    @include t.title-medium;
+  }
+
+  &__summary {
+    color: var(--text-primary);
+
+    @include t.heading-medium;
+
+    font-weight: 500;
+  }
+
+  &__description {
+    color: var(--text-secondary);
+
+    @include t.body-medium;
+  }
+
+  &__points {
+    display: grid;
+    gap: s.$gap-3;
+    margin-top: s.$gap-2;
+    padding-top: s.$gap-5;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  &__point {
+    display: flex;
+    align-items: flex-start;
+    gap: s.$gap-3;
+    color: var(--text-primary);
+
+    @include t.label-medium;
+
+    svg {
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--brand-gold);
+    }
+  }
+}

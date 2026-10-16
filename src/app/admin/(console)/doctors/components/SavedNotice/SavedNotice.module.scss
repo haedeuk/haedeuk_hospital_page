@@ -1,0 +1,15 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+.notice {
+  display: flex;
+  align-items: center;
+  gap: s.$gap-3;
+  margin-bottom: s.$gap-6;
+  padding: s.$gap-4 s.$gap-5;
+  border-radius: s.$shape-md;
+  color: var(--status-success);
+  background-color: var(--status-success-tint);
+
+  @include t.label-medium;
+}

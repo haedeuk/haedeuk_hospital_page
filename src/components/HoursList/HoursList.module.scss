@@ -1,0 +1,47 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+.hours {
+  display: flex;
+  flex-direction: column;
+
+  &--inverse {
+    .hours__row {
+      border-color: var(--border-on-inverse);
+    }
+
+    .hours__label {
+      color: var(--text-on-inverse-muted);
+    }
+
+    .hours__time {
+      color: var(--text-on-inverse);
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    gap: s.$gap-5;
+    padding-block: s.$gap-4;
+    border-bottom: 1px solid var(--border-subtle);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  &__label {
+    color: var(--text-secondary);
+
+    @include t.label-medium;
+  }
+
+  &__time {
+    color: var(--text-primary);
+    text-align: right;
+
+    @include t.label-large;
+    @include t.numeric;
+  }
+}

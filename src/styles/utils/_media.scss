@@ -1,0 +1,45 @@
+// 반응형 — 모바일 우선
+//   Mobile  : 600px 이하 (기본 스타일)
+//   Tablet  : 601px ~ 900px
+//   Desktop : 901px 이상
+// 기본 스타일을 모바일로 쓰고 tablet-up / desktop-up 으로 넓혀 나간다.
+
+$bp-mobile: 600px;
+$bp-tablet: 900px;
+$bp-wide: 1200px;
+
+@mixin tablet-up {
+  @media (width > $bp-mobile) {
+    @content;
+  }
+}
+
+@mixin desktop-up {
+  @media (width > $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin wide-up {
+  @media (width > $bp-wide) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media (width <= $bp-tablet) {
+    @content;
+  }
+}
+
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+@mixin hover-supported {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}

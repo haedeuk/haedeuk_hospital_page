@@ -1,0 +1,18 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+.copy {
+  display: inline-flex;
+  align-items: center;
+  gap: s.$gap-2;
+  padding: 0;
+  border: 0;
+  color: var(--text-secondary);
+  background: none;
+
+  @include t.label-medium;
+
+  &:hover {
+    color: var(--brand-gold-text);
+  }
+}

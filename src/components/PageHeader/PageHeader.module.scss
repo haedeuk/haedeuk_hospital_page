@@ -1,0 +1,57 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.header {
+  padding-block: s.$gap-10 s.$gap-9;
+  border-bottom: 1px solid var(--border-subtle);
+
+  @include media.desktop-up {
+    padding-block: s.$gap-12 s.$gap-10;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-5;
+
+    @include c.container;
+  }
+
+  &__crumbs {
+    margin-bottom: s.$gap-3;
+    color: var(--text-tertiary);
+
+    @include t.label-small;
+
+    ol {
+      display: flex;
+      flex-wrap: wrap;
+      gap: s.$gap-3;
+    }
+
+    li + li::before {
+      content: "/";
+      margin-right: s.$gap-3;
+      color: var(--border-strong);
+    }
+
+    a[aria-current="page"] {
+      color: var(--text-secondary);
+    }
+  }
+
+  &__title {
+    color: var(--text-primary);
+
+    @include t.title-large;
+  }
+
+  &__description {
+    max-width: 620px;
+    color: var(--text-secondary);
+
+    @include t.body-large;
+  }
+}

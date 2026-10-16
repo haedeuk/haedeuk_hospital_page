@@ -1,0 +1,58 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: s.$gap-2;
+  min-height: 44px;
+  padding: 0 s.$gap-6;
+  border: 1px solid transparent;
+  border-radius: s.$shape-md;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+
+  @include t.label-medium;
+
+  &:disabled {
+    cursor: progress;
+    opacity: 0.6;
+  }
+
+  &--primary {
+    color: var(--action-on-primary);
+    background-color: var(--action-primary);
+
+    &:hover:not(:disabled) {
+      background-color: var(--action-primary-hover);
+    }
+  }
+
+  &--secondary {
+    color: var(--text-primary);
+    border-color: var(--border-default);
+    background-color: var(--surface-card);
+
+    &:hover:not(:disabled) {
+      border-color: var(--border-strong);
+    }
+  }
+
+  &--danger {
+    color: var(--status-danger);
+    border-color: var(--status-danger);
+    background-color: transparent;
+
+    &:hover:not(:disabled) {
+      background-color: var(--status-danger-tint);
+    }
+  }
+
+  &--small {
+    min-height: 34px;
+    padding: 0 s.$gap-4;
+
+    @include t.label-small;
+  }
+}

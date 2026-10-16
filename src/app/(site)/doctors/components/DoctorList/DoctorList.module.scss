@@ -1,0 +1,30 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.list {
+  @include c.section-padding;
+
+  &__inner {
+    @include c.container;
+  }
+
+  &__grid {
+    display: grid;
+    gap: s.$gap-7;
+
+    // 사진이 없는 카드는 짧아서 넓은 화면에서 두 줄로 놓는다
+    @include media.desktop-up {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &__empty {
+    padding-block: s.$gap-12;
+    color: var(--text-tertiary);
+    text-align: center;
+
+    @include t.body-large;
+  }
+}

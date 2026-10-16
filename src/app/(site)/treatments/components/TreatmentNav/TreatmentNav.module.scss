@@ -1,0 +1,51 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.nav {
+  position: sticky;
+  top: s.$header-height-mobile;
+  z-index: s.$z-header - 1;
+  border-bottom: 1px solid var(--border-subtle);
+  background-color: var(--surface-header);
+  backdrop-filter: blur(14px);
+
+  @include media.desktop-up {
+    top: s.$header-height;
+  }
+
+  &__list {
+    display: flex;
+    gap: s.$gap-3;
+    padding-block: s.$gap-4;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    @include c.container;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 0 s.$gap-5;
+    border: 1px solid var(--border-default);
+    border-radius: s.$shape-full;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+
+    @include t.label-medium;
+
+    &:hover {
+      border-color: var(--brand-gold);
+      color: var(--text-primary);
+      background-color: var(--brand-gold-tint);
+    }
+  }
+}

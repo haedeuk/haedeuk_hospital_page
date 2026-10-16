@@ -1,0 +1,24 @@
+// 콘텐츠 폭 골격. CSS 모듈은 클래스를 파일 사이에서 나눠 쓸 수 없어 믹스인으로 공유한다.
+
+@use "styles/tokens/spacing" as s;
+@use "styles/utils/media" as media;
+
+@mixin container($max: s.$container-max) {
+  width: 100%;
+  max-width: calc(#{$max} + #{s.$gutter-mobile} * 2);
+  margin-inline: auto;
+  padding-inline: s.$gutter-mobile;
+
+  @include media.desktop-up {
+    max-width: calc(#{$max} + #{s.$gutter-desktop} * 2);
+    padding-inline: s.$gutter-desktop;
+  }
+}
+
+@mixin section-padding {
+  padding-block: s.$gap-11;
+
+  @include media.desktop-up {
+    padding-block: s.$gap-13;
+  }
+}

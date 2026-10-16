@@ -1,0 +1,60 @@
+// 해득금천한의원 — 데이터 모델
+//
+// Supabase Postgres 위에서 Prisma 가 스키마·마이그레이션·조회를 맡는다.
+// 로그인(Auth)과 의사 사진(Storage)만 Supabase 가 맡는다.
+//
+// Prisma 로 표현할 수 없는 것(CHECK 제약, RLS, 스토리지 정책, is_admin 함수)은
+// migration.sql 에서 보강한다.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Doctor {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name        String   @db.VarChar(30)
+  // 대표원장 · 진료원장
+  position    String   @db.VarChar(30)
+  // 관리자 화면에서는 "한 줄에 하나" textarea 로 편집한다
+  careers     String[] @default([])
+  // Storage doctor-photos 버킷 안의 경로. null 이면 이니셜로 표시
+  photoPath   String?  @map("photo_path")
+  sortOrder   Int      @default(0) @map("sort_order")
+  isPublished Boolean  @default(true) @map("is_published")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([sortOrder])
+  @@map("doctors")
+}
+
+model Fee {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  // 행위료 · 치료재료대 · 제증명수수료 (CHECK 제약은 migration.sql)
+  category    String   @db.VarChar(20)
+  name        String   @db.VarChar(60)
+  // null 이면 화면에 '-'
+  amount      Int?
+  // '장당' 같은 접두어 → "장당 1,000원"
+  pricePrefix String?  @map("price_prefix") @db.VarChar(10)
+  sortOrder   Int      @default(0) @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  @@index([category, sortOrder])
+  @@map("fees")
+}
+
+// 관리자는 한 명이다. 배포할 때 ADMIN_EMAIL 환경변수로 이 테이블을 덮어쓴다 (prisma/syncAdmin.ts).
+// 앱은 환경변수로, 스토리지 정책(is_admin)은 이 테이블로 같은 사람을 확인한다.
+model Admin {
+  email     String   @id
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+
+  @@map("admins")
+}

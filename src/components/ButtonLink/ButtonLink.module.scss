@@ -1,0 +1,76 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: s.$gap-3;
+  min-height: 48px;
+  padding: 0 s.$gap-7;
+  border: 1px solid transparent;
+  border-radius: s.$shape-lg;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+
+  @include t.label-large;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &--primary {
+    color: var(--action-on-primary);
+    background-color: var(--action-primary);
+
+    @include media.hover-supported {
+      &:hover {
+        background-color: var(--action-primary-hover);
+      }
+    }
+  }
+
+  &--secondary {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+    background-color: transparent;
+
+    @include media.hover-supported {
+      &:hover {
+        border-color: var(--text-primary);
+      }
+    }
+  }
+
+  // 어두운 띠 위의 강조 버튼
+  &--accent {
+    color: var(--action-on-accent);
+    background-color: var(--action-accent);
+
+    @include media.hover-supported {
+      &:hover {
+        background-color: var(--action-accent-hover);
+      }
+    }
+  }
+
+  &--inverse {
+    color: var(--text-on-inverse);
+    border-color: var(--border-on-inverse);
+    background-color: transparent;
+
+    @include media.hover-supported {
+      &:hover {
+        border-color: var(--text-on-inverse);
+      }
+    }
+  }
+
+  &--small {
+    min-height: 40px;
+    padding: 0 s.$gap-5;
+
+    @include t.label-medium;
+  }
+}

@@ -1,0 +1,132 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.location {
+  @include c.section-padding;
+
+  &__inner {
+    display: grid;
+    gap: s.$gap-8;
+
+    @include c.container;
+
+    @include media.desktop-up {
+      grid-template-columns: 1.4fr 1fr;
+      align-items: start;
+      gap: s.$gap-9;
+    }
+  }
+
+  &__mapColumn {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-6;
+  }
+
+  &__map {
+    min-height: 360px;
+    border-radius: s.$shape-2xl;
+
+    @include media.desktop-up {
+      min-height: 480px;
+    }
+  }
+
+  &__access {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-5;
+    padding: s.$gap-7;
+    border: 1px solid var(--border-subtle);
+    border-radius: s.$shape-2xl;
+    background-color: var(--surface-subtle);
+  }
+
+  &__landmark {
+    color: var(--text-primary);
+
+    @include t.heading-small;
+  }
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    border-radius: s.$shape-2xl;
+    background-color: var(--surface-card);
+
+    @include media.desktop-up {
+      position: sticky;
+      top: 104px;
+    }
+  }
+
+  &__block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: s.$gap-4;
+    padding: s.$gap-7;
+
+    & + & {
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    > dl {
+      align-self: stretch;
+    }
+  }
+
+  &__heading {
+    display: inline-flex;
+    align-items: center;
+    gap: s.$gap-3;
+    color: var(--brand-gold-text);
+
+    @include t.label-medium;
+  }
+
+  &__address {
+    color: var(--text-primary);
+    font-style: normal;
+
+    @include t.heading-medium;
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.$gap-3;
+  }
+
+  &__phone {
+    color: var(--text-primary);
+
+    @include t.title-small;
+    @include t.numeric;
+  }
+
+  &__note {
+    color: var(--text-tertiary);
+
+    @include t.body-small;
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.$gap-2;
+  }
+
+  &__chip {
+    padding: s.$gap-2 s.$gap-4;
+    border: 1px solid var(--border-default);
+    border-radius: s.$shape-full;
+    color: var(--text-secondary);
+
+    @include t.label-small;
+  }
+}

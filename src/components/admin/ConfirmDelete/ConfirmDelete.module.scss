@@ -1,0 +1,71 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+.trigger {
+  padding: s.$gap-2 s.$gap-3;
+  border: 0;
+  border-radius: s.$shape-sm;
+  color: var(--status-danger);
+  background: none;
+
+  @include t.label-small;
+
+  &:hover {
+    background-color: var(--status-danger-tint);
+  }
+}
+
+.dialog {
+  width: min(420px, calc(100vw - 32px));
+  padding: 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: s.$shape-xl;
+  color: var(--text-primary);
+  background-color: var(--surface-card);
+  box-shadow: var(--shadow-raised);
+
+  &::backdrop {
+    background-color: var(--surface-backdrop);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-4;
+    padding: s.$gap-8 s.$gap-7 s.$gap-7;
+  }
+
+  &__title {
+    @include t.heading-medium;
+  }
+
+  &__description {
+    color: var(--text-secondary);
+
+    @include t.body-small;
+  }
+
+  &__error {
+    color: var(--status-danger);
+
+    @include t.label-small;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: s.$gap-3;
+    margin-top: s.$gap-4;
+  }
+
+  &__cancel {
+    min-height: 44px;
+    padding: 0 s.$gap-6;
+    border: 1px solid var(--border-default);
+    border-radius: s.$shape-md;
+    color: var(--text-primary);
+    background-color: var(--surface-card);
+
+    @include t.label-medium;
+  }
+}

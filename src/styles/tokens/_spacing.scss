@@ -1,0 +1,36 @@
+// Spacing · Shape · Layout
+// 4px 기반. 임의 px 대신 이 변수를 쓴다.
+
+$gap-1: 2px;
+$gap-2: 4px;
+$gap-3: 8px;
+$gap-4: 12px;
+$gap-5: 16px;
+$gap-6: 20px;
+$gap-7: 24px;
+$gap-8: 32px;
+$gap-9: 40px;
+$gap-10: 48px;
+$gap-11: 64px;
+$gap-12: 80px;
+$gap-13: 96px;
+$gap-14: 128px;
+
+$shape-sm: 4px;
+$shape-md: 8px;
+$shape-lg: 12px;
+$shape-xl: 16px;
+$shape-2xl: 24px;
+$shape-full: 9999px;
+
+$container-max: 1200px;
+$container-narrow: 880px;
+$gutter-mobile: 16px;
+$gutter-desktop: 32px;
+$header-height: 72px;
+$header-height-mobile: 60px;
+
+$z-header: 100;
+$z-floating: 90;
+$z-drawer: 200;
+$z-modal: 300;

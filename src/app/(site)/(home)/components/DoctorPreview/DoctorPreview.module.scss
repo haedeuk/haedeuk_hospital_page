@@ -1,0 +1,43 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/utils/media" as media;
+
+.preview {
+  background-color: var(--surface-subtle);
+
+  @include c.section-padding;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-9;
+
+    @include c.container;
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: s.$gap-7;
+
+    @include media.desktop-up {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+  }
+
+  &__list {
+    display: grid;
+    gap: s.$gap-5;
+
+    @include media.tablet-up {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include media.desktop-up {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}

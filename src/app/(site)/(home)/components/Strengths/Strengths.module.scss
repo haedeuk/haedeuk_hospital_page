@@ -1,0 +1,73 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.strengths {
+  @include c.section-padding;
+
+  &__inner {
+    display: grid;
+    gap: s.$gap-9;
+    align-items: center;
+
+    @include c.container;
+
+    @include media.desktop-up {
+      grid-template-columns: 1fr 1fr;
+      gap: s.$gap-12;
+    }
+  }
+
+  &__media {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: s.$shape-2xl;
+    background-color: var(--surface-muted);
+
+    img {
+      object-fit: cover;
+    }
+
+    @include media.desktop-up {
+      aspect-ratio: 4 / 5;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-8;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: grid;
+    gap: s.$gap-2;
+    padding-block: s.$gap-5;
+    border-top: 1px solid var(--border-default);
+
+    @include media.tablet-up {
+      grid-template-columns: 200px 1fr;
+      gap: s.$gap-6;
+    }
+  }
+
+  &__title {
+    color: var(--text-primary);
+
+    @include t.heading-medium;
+  }
+
+  &__description {
+    color: var(--text-secondary);
+
+    @include t.body-small;
+  }
+}

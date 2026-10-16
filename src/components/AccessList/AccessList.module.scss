@@ -1,0 +1,49 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+.access {
+  display: flex;
+  flex-direction: column;
+  gap: s.$gap-5;
+
+  &__item {
+    display: flex;
+    gap: s.$gap-4;
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: s.$shape-lg;
+    color: var(--brand-gold-text);
+    background-color: var(--brand-gold-tint);
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-1;
+  }
+
+  &__label {
+    color: var(--text-tertiary);
+
+    @include t.label-small;
+  }
+
+  &__title {
+    color: var(--text-primary);
+
+    @include t.label-large;
+  }
+
+  &__detail {
+    color: var(--text-secondary);
+
+    @include t.body-small;
+  }
+}

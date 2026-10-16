@@ -1,0 +1,131 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: s.$gap-8;
+  max-width: 960px;
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-3;
+  }
+
+  &__back {
+    color: var(--text-tertiary);
+
+    @include t.label-small;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+  }
+
+  &__title {
+    color: var(--text-primary);
+
+    @include t.title-small;
+  }
+
+  &__grid {
+    display: grid;
+    gap: s.$gap-7;
+
+    @include media.desktop-up {
+      grid-template-columns: 280px 1fr;
+      align-items: start;
+    }
+  }
+
+  &__photo,
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-6;
+    padding: s.$gap-7;
+    border: 1px solid var(--border-subtle);
+    border-radius: s.$shape-xl;
+    background-color: var(--surface-card);
+  }
+
+  &__preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: s.$shape-lg;
+    background-color: var(--surface-subtle);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+  }
+
+  &__monogram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    border: 1px solid var(--brand-gold);
+    border-radius: 50%;
+    color: var(--brand-gold-text);
+
+    @include t.title-medium;
+  }
+
+  &__check {
+    display: inline-flex;
+    align-items: center;
+    gap: s.$gap-3;
+    color: var(--text-primary);
+    cursor: pointer;
+
+    @include t.label-medium;
+
+    input {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--brand-gold);
+    }
+  }
+
+  &__footer {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: s.$gap-4;
+    padding-block: s.$gap-5;
+    border-top: 1px solid var(--border-subtle);
+    background-color: var(--surface-subtle);
+  }
+
+  &__buttons {
+    display: flex;
+    gap: s.$gap-3;
+    margin-left: auto;
+  }
+
+  &__cancel {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 s.$gap-6;
+    border: 1px solid var(--border-default);
+    border-radius: s.$shape-md;
+    color: var(--text-primary);
+    background-color: var(--surface-card);
+
+    @include t.label-medium;
+  }
+}

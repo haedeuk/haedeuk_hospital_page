@@ -1,0 +1,46 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.band {
+  padding-block: s.$gap-11;
+  color: var(--text-on-inverse);
+  background-color: var(--surface-inverse);
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-8;
+
+    @include c.container;
+
+    @include media.desktop-up {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-3;
+  }
+
+  &__title {
+    @include t.title-medium;
+  }
+
+  &__description {
+    color: var(--text-on-inverse-muted);
+
+    @include t.body-medium;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.$gap-3;
+  }
+}

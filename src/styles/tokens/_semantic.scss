@@ -1,0 +1,118 @@
+// Semantic Tokens (CSS Custom Properties)
+//
+// 컴포넌트는 반드시 var(--*) 로만 색을 참조한다. stylelint 가 color · background-color ·
+// border-color 의 hex/rgb 직접 사용을 막는다.
+//
+// 라이트가 기본이고 OS 가 다크면 자동으로 다크 블록이 덮어쓴다(토글 없음).
+// 값을 바꿀 때는 **두 블록을 함께** 고친다.
+
+@use "./primitive" as p;
+
+:root {
+  color-scheme: light;
+
+  // ── Surface ──────────────────────────────────────────────
+  --surface-page: #{p.$stone-10};
+  --surface-card: #{p.$stone-0};
+  --surface-subtle: #{p.$stone-20};
+  --surface-muted: #{p.$stone-30};
+  --surface-header: rgb(250, 249, 247, 0.88);
+  --surface-inverse: #{p.$marble-80};
+  --surface-inverse-subtle: #{p.$marble-60};
+  // 사진 위 글자를 읽히게 하는 막. 사진은 테마와 무관하므로 두 테마가 같은 방향으로 어둡다.
+  --surface-image-scrim: linear-gradient(180deg, rgb(20, 15, 10, 0) 45%, rgb(20, 15, 10, 0.7) 100%);
+  --surface-backdrop: rgb(20, 15, 10, 0.5);
+
+  // ── Text ─────────────────────────────────────────────────
+  --text-primary: #{p.$ink-90};
+  --text-secondary: #{p.$ink-60};
+  --text-tertiary: #{p.$ink-50};
+  --text-disabled: #{p.$ink-40};
+  --text-on-inverse: #{p.$stone-10};
+  --text-on-inverse-muted: #{p.$gold-20};
+  --text-on-image: #{p.$stone-0};
+
+  // ── Brand ────────────────────────────────────────────────
+  // gold 는 선·아이콘 같은 작은 장식, gold-text 는 글자로 쓸 때(본문 대비 AA).
+  --brand-gold: #{p.$gold-50};
+  --brand-gold-text: #{p.$gold-60};
+  --brand-gold-soft: #{p.$gold-20};
+  --brand-gold-tint: rgb(168, 132, 74, 0.1);
+
+  // ── Action ───────────────────────────────────────────────
+  // 주요 버튼은 접수대의 마블 브라운
+  --action-primary: #{p.$marble-70};
+  --action-primary-hover: #{p.$marble-80};
+  --action-on-primary: #{p.$stone-10};
+  // 어두운 띠 위의 강조 버튼
+  --action-accent: #{p.$gold-40};
+  --action-accent-hover: #{p.$gold-30};
+  --action-on-accent: #{p.$ink-90};
+
+  // ── 진료시간표 막대 ───────────────────────────────────────
+  // 평일과 주말이 두 테마 모두에서 다른 색으로 읽혀야 한다.
+  --hours-weekday: #{p.$marble-70};
+  --hours-weekend: #{p.$gold-50};
+
+  // ── Border ───────────────────────────────────────────────
+  --border-default: #{p.$stone-40};
+  --border-subtle: #{p.$stone-30};
+  --border-strong: #{p.$ink-40};
+  --border-focus: #{p.$gold-50};
+  --border-on-inverse: rgb(250, 249, 247, 0.22);
+
+  // ── Status ───────────────────────────────────────────────
+  --status-danger: #{p.$red-60};
+  --status-danger-tint: rgb(168, 67, 47, 0.1);
+  --status-success: #{p.$green-60};
+  --status-success-tint: rgb(61, 122, 82, 0.12);
+
+  // ── Elevation ────────────────────────────────────────────
+  // 그림자는 떠 있는 것(사진 위 카드·서랍·대화상자)에만 쓴다.
+  --shadow-raised: 0 18px 48px rgb(31, 28, 25, 0.16);
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+
+    --surface-page: #{p.$night-90};
+    --surface-card: #{p.$night-80};
+    --surface-subtle: #{p.$night-85};
+    --surface-muted: #{p.$night-70};
+    --surface-header: rgb(22, 20, 18, 0.86);
+    --surface-inverse: #{p.$night-95};
+    --surface-inverse-subtle: #{p.$night-60};
+    --surface-image-scrim: linear-gradient(180deg, rgb(10, 8, 6, 0) 40%, rgb(10, 8, 6, 0.8) 100%);
+    --surface-backdrop: rgb(0, 0, 0, 0.6);
+
+    --text-primary: #{p.$sand-10};
+    --text-secondary: #{p.$sand-30};
+    --text-tertiary: #{p.$sand-40};
+    --text-disabled: #{p.$night-50};
+    --text-on-inverse: #{p.$sand-10};
+    --text-on-inverse-muted: #{p.$sand-30};
+
+    --brand-gold: #{p.$gold-40};
+    --brand-gold-text: #{p.$gold-30};
+    --brand-gold-soft: #{p.$night-60};
+    --brand-gold-tint: rgb(201, 166, 107, 0.12);
+
+    --action-primary: #{p.$gold-40};
+    --action-primary-hover: #{p.$gold-30};
+    --action-on-primary: #{p.$night-90};
+
+    --hours-weekday: #{p.$sand-30};
+    --hours-weekend: #{p.$gold-40};
+
+    --border-default: #{p.$night-60};
+    --border-subtle: #{p.$night-70};
+    --border-strong: #{p.$night-50};
+    --border-focus: #{p.$gold-40};
+
+    --status-danger: #{p.$red-30};
+    --status-danger-tint: rgb(236, 149, 131, 0.12);
+    --status-success: #{p.$green-30};
+    --status-success-tint: rgb(140, 199, 160, 0.12);
+
+    --shadow-raised: 0 18px 48px rgb(0, 0, 0, 0.5);
+  }
+}

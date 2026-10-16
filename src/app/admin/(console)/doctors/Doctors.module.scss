@@ -1,0 +1,46 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: s.$gap-5;
+  margin-bottom: s.$gap-8;
+
+  @include media.tablet-up {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  &__title {
+    color: var(--text-primary);
+
+    @include t.title-small;
+  }
+
+  &__description {
+    margin-top: s.$gap-2;
+    color: var(--text-tertiary);
+
+    @include t.body-small;
+  }
+
+  &__add {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 0 s.$gap-6;
+    border-radius: s.$shape-md;
+    color: var(--action-on-primary);
+    background-color: var(--action-primary);
+
+    @include t.label-medium;
+
+    &:hover {
+      background-color: var(--action-primary-hover);
+    }
+  }
+}

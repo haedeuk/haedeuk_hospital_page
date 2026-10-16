@@ -1,0 +1,54 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: s.$gap-9;
+  max-width: 1040px;
+
+  &__group {
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    border-radius: s.$shape-xl;
+    background-color: var(--surface-card);
+  }
+
+  &__category {
+    display: flex;
+    align-items: baseline;
+    gap: s.$gap-3;
+    padding: s.$gap-6 s.$gap-7 s.$gap-4;
+    color: var(--text-primary);
+
+    @include t.heading-medium;
+  }
+
+  &__count {
+    color: var(--brand-gold-text);
+
+    @include t.label-small;
+  }
+
+  &__labels {
+    display: none;
+    padding: s.$gap-3 s.$gap-7;
+    border-block: 1px solid var(--border-subtle);
+    color: var(--text-tertiary);
+    background-color: var(--surface-subtle);
+
+    @include t.label-small;
+
+    @include media.tablet-up {
+      display: grid;
+      grid-template-columns: 1fr 88px 140px 236px;
+      gap: s.$gap-4;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+}

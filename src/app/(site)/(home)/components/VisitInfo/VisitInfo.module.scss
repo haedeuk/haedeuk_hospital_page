@@ -1,0 +1,61 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.visit {
+  background-color: var(--surface-subtle);
+
+  @include c.section-padding;
+
+  &__inner {
+    display: grid;
+    gap: s.$gap-9;
+
+    @include c.container;
+
+    @include media.desktop-up {
+      grid-template-columns: 1fr 1.25fr;
+      gap: s.$gap-11;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-7;
+  }
+
+  &__address {
+    padding-block: s.$gap-5;
+    border-block: 1px solid var(--border-default);
+    color: var(--text-primary);
+    font-style: normal;
+
+    @include t.heading-medium;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.$gap-3;
+  }
+
+  &__map {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: s.$gap-4;
+  }
+
+  &__canvas {
+    width: 100%;
+    min-height: 340px;
+    border-radius: s.$shape-2xl;
+
+    @include media.desktop-up {
+      flex: 1;
+      min-height: 460px;
+    }
+  }
+}

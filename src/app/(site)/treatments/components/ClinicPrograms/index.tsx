@@ -1,0 +1,30 @@
+import SectionHeading from '@/components/SectionHeading';
+import { CLINIC_PROGRAMS } from '@/constants/clinic';
+import styles from './ClinicPrograms.module.scss';
+
+// 네이버 플레이스에 병원이 소개한 클리닉을 분야별로
+export default function ClinicPrograms() {
+  return (
+    <section className={styles.programs} aria-labelledby="programs-title">
+      <div className={styles.programs__inner}>
+        <SectionHeading
+          id="programs-title"
+          title="분야별 클리닉"
+          description="통증과 재활부터 체질 보약, 수면과 마음 건강까지 상담해 드립니다."
+        />
+        <div className={styles.programs__grid}>
+          {CLINIC_PROGRAMS.map((program) => (
+            <div key={program.group} className={styles.programs__column}>
+              <h3 className={styles.programs__group}>{program.group}</h3>
+              <ul className={styles.programs__items}>
+                {program.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

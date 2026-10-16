@@ -1,0 +1,130 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.doctor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: s.$shape-xl;
+  background-color: var(--surface-card);
+
+  &--horizontal.doctor--withPhoto {
+    @include media.tablet-up {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+
+      .doctor__photo {
+        aspect-ratio: auto;
+        min-height: 100%;
+      }
+    }
+  }
+
+  &--horizontal {
+    .doctor__body {
+      @include media.tablet-up {
+        padding: s.$gap-8;
+      }
+    }
+
+    .doctor__careers {
+      @include media.wide-up {
+        column-count: 2;
+        column-gap: s.$gap-8;
+      }
+    }
+  }
+
+  &__photo {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background-color: var(--surface-subtle);
+
+    img {
+      object-fit: cover;
+      object-position: center 20%;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-6;
+    padding: s.$gap-7;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: s.$gap-5;
+  }
+
+  &__monogram {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--border-default);
+    border-radius: 50%;
+    color: var(--brand-gold-text);
+    background-color: var(--surface-subtle);
+
+    @include t.title-small;
+  }
+
+  &__name {
+    color: var(--text-primary);
+
+    @include t.title-small;
+  }
+
+  &__position {
+    margin-top: s.$gap-1;
+    color: var(--brand-gold-text);
+
+    @include t.label-medium;
+  }
+
+  &__careers {
+    padding-top: s.$gap-5;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  &__career {
+    display: flex;
+    align-items: flex-start;
+    gap: s.$gap-3;
+    padding-block: s.$gap-1;
+    color: var(--text-secondary);
+    break-inside: avoid;
+
+    @include t.body-small;
+  }
+
+  &__tag {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    border-radius: s.$shape-sm;
+    color: var(--text-tertiary);
+    background-color: var(--surface-subtle);
+
+    @include t.label-small;
+
+    font-size: 11px;
+
+    &--current {
+      color: var(--brand-gold-text);
+      background-color: var(--brand-gold-tint);
+    }
+  }
+}

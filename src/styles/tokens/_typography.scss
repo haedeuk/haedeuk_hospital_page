@@ -1,0 +1,143 @@
+// Typography
+//
+// 두 서체만 쓴다.
+//   제목: Hahmlet (--font-serif) — 획 대비가 있는 현대 명조. 크게 쓸수록 자간을 좁힌다.
+//   본문·UI: Pretendard (--font-sans)
+// 크기는 1.25 비율 근처로 맞추고, 모바일 기본 → tablet-up / desktop-up 으로 키운다.
+// 대문자 머리말·장식용 라벨은 두지 않는다.
+
+@use "styles/utils/media" as media;
+
+@mixin serif {
+  font-family: var(--font-serif), "Hahmlet", serif;
+}
+
+// 첫 화면 제목
+@mixin display {
+  @include serif;
+
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.24;
+  letter-spacing: -0.035em;
+
+  @include media.tablet-up {
+    font-size: 48px;
+  }
+
+  @include media.desktop-up {
+    font-size: 64px;
+  }
+}
+
+// 하위 페이지 제목
+@mixin title-large {
+  @include serif;
+
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -0.03em;
+
+  @include media.desktop-up {
+    font-size: 48px;
+  }
+}
+
+// 섹션 제목
+@mixin title-medium {
+  @include serif;
+
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.34;
+  letter-spacing: -0.025em;
+
+  @include media.desktop-up {
+    font-size: 36px;
+  }
+}
+
+// 카드·항목 제목
+@mixin title-small {
+  @include serif;
+
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+
+  @include media.desktop-up {
+    font-size: 23px;
+  }
+}
+
+@mixin heading-medium {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+
+  @include media.desktop-up {
+    font-size: 18px;
+  }
+}
+
+@mixin heading-small {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+@mixin body-large {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  letter-spacing: -0.005em;
+
+  @include media.desktop-up {
+    font-size: 17px;
+  }
+}
+
+@mixin body-medium {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: -0.005em;
+
+  @include media.desktop-up {
+    font-size: 16px;
+  }
+}
+
+@mixin body-small {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+@mixin label-large {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+@mixin label-medium {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+@mixin label-small {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+// 가격·시간처럼 자릿수를 맞춰 읽는 숫자
+@mixin numeric {
+  font-variant-numeric: tabular-nums;
+}

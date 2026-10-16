@@ -1,0 +1,132 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.hero {
+  padding-block: s.$gap-9 s.$gap-11;
+
+  @include media.desktop-up {
+    padding-block: s.$gap-12;
+  }
+
+  &__inner {
+    display: grid;
+    gap: s.$gap-9;
+    align-items: center;
+
+    @include c.container;
+
+    @include media.desktop-up {
+      grid-template-columns: 1fr 1.1fr;
+      gap: s.$gap-12;
+    }
+  }
+
+  // 페이지에서 유일하게 움직이는 곳: 첫 화면 글이 한 번 올라온다. 사진은 움직이지 않는다.
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: s.$gap-7;
+    animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+    @include media.reduced-motion {
+      animation: none;
+    }
+  }
+
+  &__title {
+    color: var(--text-primary);
+
+    @include t.display;
+  }
+
+  &__description {
+    max-width: 30em;
+    color: var(--text-secondary);
+
+    @include t.body-large;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.$gap-3;
+  }
+
+  &__visual {
+    position: relative;
+    margin: 0;
+    padding-bottom: s.$gap-7;
+  }
+
+  &__photo {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: s.$shape-2xl;
+    background-color: var(--surface-muted);
+
+    img {
+      object-fit: cover;
+      object-position: 58% 50%;
+    }
+
+    @include media.desktop-up {
+      aspect-ratio: 6 / 7;
+    }
+  }
+
+  &__note {
+    position: absolute;
+    bottom: 0;
+    left: s.$gap-5;
+    display: flex;
+    align-items: center;
+    gap: s.$gap-4;
+    padding: s.$gap-4 s.$gap-6 s.$gap-4 s.$gap-4;
+    border-radius: s.$shape-xl;
+    color: var(--text-primary);
+    background-color: var(--surface-card);
+    box-shadow: var(--shadow-raised);
+
+    strong {
+      display: block;
+
+      @include t.label-large;
+    }
+
+    small {
+      display: block;
+      color: var(--text-tertiary);
+
+      @include t.label-small;
+    }
+
+    @include media.desktop-up {
+      left: -(s.$gap-8);
+      bottom: s.$gap-10;
+    }
+  }
+
+  &__noteIcon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--brand-gold-text);
+    background-color: var(--brand-gold-tint);
+  }
+}
+
+// 투명도 0 에서 시작하면 첫 화면의 가장 큰 글자(LCP)가 늦게 잡힌다. 살짝 보이는 상태에서 올라온다.
+@keyframes rise {
+  from {
+    opacity: 0.35;
+    transform: translateY(14px);
+  }
+}

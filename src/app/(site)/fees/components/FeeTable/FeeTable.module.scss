@@ -1,0 +1,137 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.fees {
+  @include c.section-padding;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-10;
+
+    @include c.container(880px);
+  }
+
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-tertiary);
+
+    @include t.label-medium;
+  }
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-5;
+  }
+
+  &__category {
+    display: flex;
+    align-items: baseline;
+    gap: s.$gap-4;
+    color: var(--text-primary);
+
+    @include t.title-small;
+  }
+
+  &__count {
+    color: var(--brand-gold-text);
+
+    @include t.label-small;
+  }
+
+  &__table {
+    width: 100%;
+    overflow: hidden;
+    border-top: 2px solid var(--text-primary);
+
+    thead {
+      th {
+        padding: s.$gap-4 s.$gap-5;
+        border-bottom: 1px solid var(--border-default);
+        color: var(--text-tertiary);
+        background-color: var(--surface-subtle);
+        text-align: left;
+
+        @include t.label-small;
+
+        &:last-child {
+          text-align: right;
+        }
+      }
+    }
+
+    tbody {
+      th,
+      td {
+        padding: s.$gap-5;
+        border-bottom: 1px solid var(--border-subtle);
+
+        @include media.desktop-up {
+          padding: s.$gap-5 s.$gap-6;
+        }
+      }
+
+      th {
+        color: var(--text-primary);
+        text-align: left;
+
+        @include t.body-medium;
+      }
+
+      td {
+        color: var(--text-primary);
+        text-align: right;
+        white-space: nowrap;
+
+        @include t.label-large;
+        @include t.numeric;
+      }
+
+      tr {
+        transition: background-color 0.15s ease;
+
+        &:hover {
+          background-color: var(--brand-gold-tint);
+        }
+      }
+    }
+  }
+
+  &__notice {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-3;
+    padding: s.$gap-7;
+    border-radius: s.$shape-lg;
+    color: var(--text-secondary);
+    background-color: var(--surface-subtle);
+
+    @include t.body-small;
+
+    li {
+      position: relative;
+      padding-left: s.$gap-5;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0.7em;
+        left: 0;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: var(--brand-gold);
+      }
+    }
+
+    a {
+      color: var(--brand-gold-text);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+}

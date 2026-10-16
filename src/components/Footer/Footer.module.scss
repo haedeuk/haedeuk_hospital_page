@@ -1,0 +1,133 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+@use "styles/utils/media" as media;
+
+.footer {
+  // 모바일 하단 고정 바에 가리지 않게
+  padding-bottom: 76px;
+  color: var(--text-on-inverse);
+  background-color: var(--surface-inverse);
+
+  @include media.wide-up {
+    padding-bottom: 0;
+  }
+
+  &__inner {
+    display: grid;
+    gap: s.$gap-9;
+    padding-block: s.$gap-11 s.$gap-9;
+
+    @include c.container;
+
+    @include media.desktop-up {
+      grid-template-columns: 1.3fr 0.7fr 1fr;
+      gap: s.$gap-11;
+      padding-block: s.$gap-12 s.$gap-10;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-5;
+  }
+
+  &__logo {
+    width: 196px;
+    height: auto;
+  }
+
+  &__slogan {
+    color: var(--text-on-inverse-muted);
+
+    @include t.body-small;
+  }
+
+  &__phone {
+    color: var(--text-on-inverse);
+
+    @include t.title-small;
+    @include t.numeric;
+  }
+
+  &__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.$gap-2;
+
+    a {
+      display: inline-flex;
+      padding: s.$gap-2 s.$gap-4;
+      border: 1px solid var(--border-on-inverse);
+      border-radius: s.$shape-full;
+      color: var(--text-on-inverse-muted);
+      transition: color 0.2s ease, border-color 0.2s ease;
+
+      @include t.label-small;
+
+      &:hover {
+        border-color: var(--text-on-inverse);
+        color: var(--text-on-inverse);
+      }
+    }
+  }
+
+  &__nav {
+    ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: s.$gap-4 s.$gap-7;
+
+      @include media.desktop-up {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    a {
+      color: var(--text-on-inverse-muted);
+      transition: color 0.2s ease;
+
+      @include t.label-medium;
+
+      &:hover {
+        color: var(--text-on-inverse);
+      }
+    }
+  }
+
+  &__heading {
+    margin-bottom: s.$gap-3;
+    color: var(--text-on-inverse);
+
+    @include t.label-medium;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-4;
+    padding-block: s.$gap-7;
+    border-top: 1px solid var(--border-on-inverse);
+    color: var(--text-on-inverse-muted);
+
+    @include c.container;
+    @include t.label-small;
+
+    @include media.desktop-up {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: s.$gap-2 s.$gap-5;
+    font-style: normal;
+  }
+
+  &__copyright {
+    flex-shrink: 0;
+  }
+}
