@@ -24,7 +24,7 @@
     align-items: center;
     gap: s.$gap-3 s.$gap-4;
 
-    @include media.tablet-up {
+    @include media.desktop-up {
       grid-template-columns: 1fr 88px 140px 236px;
     }
   }
@@ -32,7 +32,7 @@
   &__form {
     grid-template-columns: 1fr;
 
-    @include media.tablet-up {
+    @include media.desktop-up {
       grid-template-columns: 1fr 88px 140px 236px;
       align-items: start;
     }
@@ -50,7 +50,7 @@
 
     @include t.label-small;
 
-    @include media.tablet-up {
+    @include media.desktop-up {
       display: block;
     }
   }
@@ -62,7 +62,7 @@
     @include t.label-large;
     @include t.numeric;
 
-    @include media.tablet-up {
+    @include media.desktop-up {
       text-align: left;
     }
   }
@@ -74,7 +74,7 @@
     justify-content: flex-end;
     gap: s.$gap-3;
 
-    @include media.tablet-up {
+    @include media.desktop-up {
       grid-column: auto;
     }
   }

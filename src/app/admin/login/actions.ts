@@ -20,11 +20,14 @@ export async function signIn(_prev: FormState, formData: FormData): Promise<Form
     password: formData.get('password'),
   });
   if (!parsed.success) return { status: 'error', message: '아이디와 비밀번호를 입력해 주세요.' };
-  if (parsed.data.loginId.toLowerCase() !== ADMIN_LOGIN_ID) return { status: 'error', message: LOGIN_FAILED };
 
-  // 관리자는 한 명 — 아이디 admin 은 ADMIN_EMAIL 계정 하나에만 연결된다.
+  // 관리자는 한 명 — 아이디 admin 이나 관리자 이메일 그대로 모두 ADMIN_EMAIL 계정 하나에만 연결된다.
+  const adminEmail = getAdminEmail();
+  const loginId = parsed.data.loginId.toLowerCase();
+  if (loginId !== ADMIN_LOGIN_ID && loginId !== adminEmail) return { status: 'error', message: LOGIN_FAILED };
+
   const supabase = await createServerSupabase();
-  const { error } = await supabase.auth.signInWithPassword({ email: getAdminEmail(), password: parsed.data.password });
+  const { error } = await supabase.auth.signInWithPassword({ email: adminEmail, password: parsed.data.password });
   if (error) return { status: 'error', message: LOGIN_FAILED };
 
   redirect('/admin');

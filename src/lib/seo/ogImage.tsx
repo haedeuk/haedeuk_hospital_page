@@ -17,14 +17,10 @@ const COLOR = {
   gold: '#C9A66B',
 };
 
-// satori 는 woff2 를 읽지 못한다. 빌드 시 Google Fonts 에서 화면에 쓰는 글자만 TTF 로 받는다.
-async function loadGoogleFont(family: string, weight: number, text: string): Promise<ArrayBuffer> {
-  const query = `family=${family.replace(/ /g, '+')}:wght@${weight}&text=${encodeURIComponent(text)}`;
-  const css = await (await fetch(`https://fonts.googleapis.com/css2?${query}`)).text();
-  const source = css.match(/src: url\((.+?)\) format\('(?:opentype|truetype)'\)/);
-
-  if (!source) throw new Error(`OG 폰트를 찾지 못했습니다: ${family} ${weight}`);
-  return (await fetch(source[1])).arrayBuffer();
+// satori 는 woff2 를 읽지 못해 woff 를 따로 둔다. 빌드 중 네트워크로 글꼴을 받지 않는다
+// (Vercel 빌드에서 Google Fonts 요청이 실패해 OG 이미지 프리렌더가 깨진 적이 있다).
+async function loadFont(fileName: string): Promise<Buffer> {
+  return readFile(join(process.cwd(), 'src/assets/fonts/og', fileName));
 }
 
 async function loadLogo(): Promise<string> {
@@ -40,8 +36,8 @@ interface OgImageInput {
 export async function renderOgImage({ title, description }: OgImageInput) {
   const footer = `${CLINIC.address.full}   ${CLINIC.phone}`;
   const [titleFont, sans, logo] = await Promise.all([
-    loadGoogleFont('Noto Sans KR', 700, title),
-    loadGoogleFont('Noto Sans KR', 500, `${description}${footer}365일 진료 입원실 운영`),
+    loadFont('Pretendard-Bold.woff'),
+    loadFont('Pretendard-Medium.woff'),
     loadLogo(),
   ]);
 

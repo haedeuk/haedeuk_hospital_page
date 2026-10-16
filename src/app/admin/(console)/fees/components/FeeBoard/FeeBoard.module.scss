@@ -40,7 +40,7 @@
 
     @include t.label-small;
 
-    @include media.tablet-up {
+    @include media.desktop-up {
       display: grid;
       grid-template-columns: 1fr 88px 140px 236px;
       gap: s.$gap-4;
