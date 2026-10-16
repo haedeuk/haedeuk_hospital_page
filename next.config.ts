@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
 
   images: {
     formats: ['image/avif', 'image/webp'],
+    // 첫 화면 사진은 이미 압축된 JPEG 라 75 로 한 번 더 누르면 대리석 결이 뭉개진다. 90 을 허용한다.
+    qualities: [75, 90],
     remotePatterns: supabaseHost
       ? [{ protocol: 'https', hostname: supabaseHost, pathname: '/storage/v1/object/public/doctor-photos/**' }]
       : [],

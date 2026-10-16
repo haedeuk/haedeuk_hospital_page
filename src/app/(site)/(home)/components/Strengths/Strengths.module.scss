@@ -31,9 +31,7 @@
       object-fit: cover;
     }
 
-    @include media.desktop-up {
-      aspect-ratio: 4 / 5;
-    }
+
   }
 
   &__body {

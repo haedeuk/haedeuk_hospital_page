@@ -35,13 +35,10 @@ export default function WeekHours() {
       <div className={styles.week__inner}>
         <div className={styles.week__text}>
           <h2 className={styles.week__title} id="week-title">
-            일요일과 공휴일에도
-            <br />
-            문을 엽니다
+            365일 연중무휴
           </h2>
           <p className={styles.week__description}>
-            아침 8시에 진료를 시작합니다. 평일은 저녁 9시, 주말과 공휴일은 오후 5시까지 진료하고 점심시간은{' '}
-            {LUNCH_BREAK.open}부터 {LUNCH_BREAK.close}까지입니다.
+            일요일과 공휴일에도 진료합니다. 점심시간은 {LUNCH_BREAK.open}부터 {LUNCH_BREAK.close}까지입니다.
           </p>
         </div>
         <ol className={styles.week__days}>

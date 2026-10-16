@@ -8,7 +8,7 @@
   min-height: 100dvh;
   padding: s.$gap-8 s.$gutter-mobile;
   background:
-    radial-gradient(circle at 20% 10%, var(--brand-gold-tint), transparent 50%),
+    radial-gradient(circle at 20% 10%, var(--brand-tint), transparent 50%),
     var(--surface-page);
 
   &__card {

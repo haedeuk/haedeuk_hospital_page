@@ -25,7 +25,7 @@
     transition: border-color 0.2s ease;
 
     &:hover {
-      border-color: var(--brand-gold);
+      border-color: var(--text-brand);
     }
   }
 
@@ -55,7 +55,7 @@
     margin-top: s.$gap-4;
     padding-top: s.$gap-4;
     border-top: 1px solid var(--border-subtle);
-    color: var(--brand-gold-text);
+    color: var(--text-brand);
 
     @include t.label-small;
   }

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Hero2 from '@/assets/images/hero-2.jpg';
+import HeroLobby from '@/assets/images/hero-lobby.jpg';
 import styles from './Philosophy.module.scss';
 
 export default function Philosophy() {
@@ -8,25 +8,25 @@ export default function Philosophy() {
       <div className={styles.philosophy__inner}>
         <figure className={styles.philosophy__media}>
           <Image
-            src={Hero2}
+            src={HeroLobby}
             alt="해득금천한의원 로비의 대리석 접수 데스크"
             placeholder="blur"
             fill
-            sizes="(width <= 900px) 100vw, 560px"
+            sizes="(width <= 900px) 130vw, 730px"
           />
         </figure>
         <div className={styles.philosophy__text}>
           <h2 className={styles.philosophy__title} id="philosophy-title">
-            환자의 입장에서
+            금천구청역 가까이,
             <br />
-            최선을 다하겠습니다
+            입원실을 갖춘 한의원
           </h2>
           <p className={styles.philosophy__body}>
-            같은 통증이라도 원인과 체질, 생활 환경은 사람마다 다릅니다. 해득금천한의원은 충분한 상담과 진찰로 지금의
-            상태를 먼저 살피고, 한 분 한 분에게 맞는 치료를 계획합니다.
+            시흥사거리 현대시장 입구, 1호선 금천구청역 1번 출구에서 걸어서 10분 거리에 있습니다. 교통사고 후유증
+            치료는 물론 재활 치료도 하고, 입원 치료가 필요하면 당일 입원과 상시 입원이 가능합니다.
           </p>
           <p className={styles.philosophy__body}>
-            모든 환자분께서 건강을 회복하실 수 있도록, 정성과 진심을 다해 진료하겠습니다.
+            평일은 물론 주말과 공휴일에도 진료합니다. 편하신 시간에 내원하셔서 깊이 있고 꼼꼼한 상담을 받아 보세요.
           </p>
         </div>
       </div>

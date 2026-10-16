@@ -10,7 +10,7 @@
   }
 
   &--editing {
-    background-color: var(--brand-gold-tint);
+    background-color: var(--brand-tint);
   }
 
   &--new {
@@ -119,7 +119,7 @@
       &:focus {
         outline: none;
         border-color: var(--border-focus);
-        box-shadow: 0 0 0 3px var(--brand-gold-tint);
+        box-shadow: 0 0 0 3px var(--brand-tint);
       }
 
       &[aria-invalid="true"] {
@@ -148,13 +148,13 @@
   padding: s.$gap-5 s.$gap-7;
   border: 0;
   border-top: 1px dashed var(--border-default);
-  color: var(--brand-gold-text);
+  color: var(--text-brand);
   background: none;
   text-align: left;
 
   @include t.label-medium;
 
   &:hover {
-    background-color: var(--brand-gold-tint);
+    background-color: var(--brand-tint);
   }
 }

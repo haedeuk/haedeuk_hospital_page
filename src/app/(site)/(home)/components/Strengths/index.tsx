@@ -14,14 +14,14 @@ export default function Strengths() {
             alt="진료 책상과 추나 테이블이 놓인 해득금천한의원 원장 진료실"
             placeholder="blur"
             fill
-            sizes="(width <= 900px) 100vw, 520px"
+            sizes="(width <= 900px) 118vw, 680px"
           />
         </figure>
         <div className={styles.strengths__body}>
           <SectionHeading
             id="strengths-title"
-            title={'환자의 입장에서\n진료합니다'}
-            description="편하신 시간에 내원하셔서 충분히 상담받으세요. 진찰부터 치료 계획까지 한 분씩 따로 세웁니다."
+            title={'환자의 입장에서\n최선을 다하겠습니다'}
+            description="편하신 시간에 내원하셔서 깊이 있고 꼼꼼한 상담을 받아 보세요."
           />
           <ul className={styles.strengths__list}>
             {STRENGTHS.map((item) => (

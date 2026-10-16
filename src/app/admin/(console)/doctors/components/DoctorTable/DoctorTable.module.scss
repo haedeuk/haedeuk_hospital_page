@@ -51,8 +51,8 @@
     height: 56px;
     overflow: hidden;
     border-radius: 50%;
-    color: var(--brand-gold-text);
-    background-color: var(--brand-gold-tint);
+    color: var(--text-brand);
+    background-color: var(--brand-tint);
 
     @include t.heading-medium;
 
@@ -74,7 +74,7 @@
     @include t.heading-small;
 
     &:hover {
-      color: var(--brand-gold-text);
+      color: var(--text-brand);
       text-decoration: underline;
       text-underline-offset: 3px;
     }

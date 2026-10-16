@@ -5,7 +5,8 @@
 
 .week {
   padding-block: s.$gap-11;
-  background-color: var(--surface-subtle);
+  color: var(--text-on-inverse);
+  background-color: var(--surface-inverse);
 
   @include media.desktop-up {
     padding-block: s.$gap-12;
@@ -31,14 +32,12 @@
   }
 
   &__title {
-    color: var(--text-primary);
-
     @include t.title-medium;
   }
 
   &__description {
     max-width: 30em;
-    color: var(--text-secondary);
+    color: var(--text-on-inverse-muted);
 
     @include t.body-medium;
   }
@@ -65,13 +64,13 @@
       }
 
       .week__label {
-        color: var(--brand-gold-text);
+        color: var(--brand-gold-on-inverse);
       }
     }
   }
 
   &__label {
-    color: var(--text-primary);
+    color: var(--text-on-inverse);
     white-space: nowrap;
 
     @include t.label-large;
@@ -89,7 +88,7 @@
     height: 160px;
     overflow: hidden;
     border-radius: s.$shape-md;
-    background-color: var(--surface-muted);
+    background-color: var(--hours-track);
 
     @include media.desktop-up {
       height: 200px;
@@ -107,7 +106,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--text-tertiary);
+    color: var(--text-on-inverse-muted);
 
     @include t.numeric;
 

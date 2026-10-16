@@ -13,7 +13,7 @@ export default function TreatmentTiles() {
           <SectionHeading
             id="treatments-title"
             title="진료항목"
-            description="증상과 체질을 함께 살펴 침, 약침, 추나, 한약, 입원 치료를 계획합니다."
+            description="교통사고 후유증 치료는 물론 재활 치료와 입원 치료도 합니다."
           />
           <ButtonLink href="/treatments" variant="secondary">
             진료항목 자세히 보기

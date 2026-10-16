@@ -38,7 +38,7 @@
   }
 
   &__count {
-    color: var(--brand-gold-text);
+    color: var(--text-brand);
 
     @include t.label-small;
   }
@@ -95,7 +95,7 @@
         transition: background-color 0.15s ease;
 
         &:hover {
-          background-color: var(--brand-gold-tint);
+          background-color: var(--brand-tint);
         }
       }
     }
@@ -124,12 +124,12 @@
         width: 4px;
         height: 4px;
         border-radius: 50%;
-        background-color: var(--brand-gold);
+        background-color: var(--text-brand);
       }
     }
 
     a {
-      color: var(--brand-gold-text);
+      color: var(--text-brand);
       text-decoration: underline;
       text-underline-offset: 3px;
     }

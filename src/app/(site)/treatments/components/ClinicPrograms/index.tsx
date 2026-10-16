@@ -7,11 +7,7 @@ export default function ClinicPrograms() {
   return (
     <section className={styles.programs} aria-labelledby="programs-title">
       <div className={styles.programs__inner}>
-        <SectionHeading
-          id="programs-title"
-          title="분야별 클리닉"
-          description="통증과 재활부터 체질 보약, 수면과 마음 건강까지 상담해 드립니다."
-        />
+        <SectionHeading id="programs-title" title="분야별 클리닉" />
         <div className={styles.programs__grid}>
           {CLINIC_PROGRAMS.map((program) => (
             <div key={program.group} className={styles.programs__column}>

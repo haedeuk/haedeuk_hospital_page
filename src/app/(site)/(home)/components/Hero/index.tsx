@@ -1,7 +1,7 @@
 import Image from 'next/image';
-import HeroLobby from '@/assets/images/hero-lobby.jpg';
+import LobbyPhoto from '@/assets/images/hero-2.jpg';
 import ButtonLink from '@/components/ButtonLink';
-import { BedIcon, CalendarIcon, PhoneIcon } from '@/components/Icons';
+import { CalendarIcon, PhoneIcon } from '@/components/Icons';
 import { CLINIC, CLINIC_LINKS } from '@/constants/clinic';
 import styles from './Hero.module.scss';
 
@@ -11,13 +11,12 @@ export default function Hero() {
       <div className={styles.hero__inner}>
         <div className={styles.hero__content}>
           <h1 className={styles.hero__title} id="hero-title">
-            체계적인 진료,
+            체계적인 진료
             <br />
-            체질에 맞춘 처방
+            체질 맞춤 처방
           </h1>
           <p className={styles.hero__description}>
-            금천구 시흥사거리에서 365일 진료하고 입원실을 운영합니다. 충분한 상담으로 지금의 상태부터 살핀 뒤 치료를
-            계획합니다.
+            아침 8시부터 진료합니다. 평일은 밤 9시, 주말과 공휴일은 오후 5시까지 문을 엽니다.
           </p>
           <div className={styles.hero__actions}>
             <ButtonLink href={CLINIC.phoneHref} icon={<PhoneIcon size={18} />}>
@@ -29,27 +28,25 @@ export default function Hero() {
           </div>
         </div>
 
-        <figure className={styles.hero__visual}>
+        <div className={styles.hero__visual}>
           <div className={styles.hero__photo}>
             <Image
-              src={HeroLobby}
+              src={LobbyPhoto}
               alt="대리석 벽과 금색 로고가 있는 해득금천한의원 로비"
               placeholder="blur"
               priority
+              quality={90}
               fill
-              sizes="(width <= 900px) 100vw, 640px"
+              // 가로 사진을 칸에 맞춰 자르므로 실제로 그려지는 폭은 칸보다 넓다 (모바일 4:3 → 약 1.34배, 데스크톱 5:4 → 약 1.42배)
+              sizes="(width <= 900px) 134vw, 880px"
             />
           </div>
-          <figcaption className={styles.hero__note}>
-            <span className={styles.hero__noteIcon}>
-              <BedIcon size={18} />
-            </span>
-            <span>
-              <strong>입원실 운영</strong>
-              <small>당일 입원도 가능합니다</small>
-            </span>
-          </figcaption>
-        </figure>
+          <div className={styles.hero__panel}>
+            <p className={styles.hero__panelLabel}>365일 진료</p>
+            <p className={styles.hero__panelTitle}>입원실을 운영합니다</p>
+            <p className={styles.hero__panelText}>입원 치료가 필요하면 당일에도 입원하실 수 있습니다.</p>
+          </div>
+        </div>
       </div>
     </section>
   );

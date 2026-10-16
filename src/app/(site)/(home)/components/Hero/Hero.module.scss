@@ -7,7 +7,7 @@
   padding-block: s.$gap-9 s.$gap-11;
 
   @include media.desktop-up {
-    padding-block: s.$gap-12;
+    padding-block: s.$gap-11 s.$gap-12;
   }
 
   &__inner {
@@ -18,8 +18,8 @@
     @include c.container;
 
     @include media.desktop-up {
-      grid-template-columns: 1fr 1.1fr;
-      gap: s.$gap-12;
+      grid-template-columns: 1fr 1.15fr;
+      gap: s.$gap-11;
     }
   }
 
@@ -43,7 +43,7 @@
   }
 
   &__description {
-    max-width: 30em;
+    max-width: 26em;
     color: var(--text-secondary);
 
     @include t.body-large;
@@ -55,71 +55,67 @@
     gap: s.$gap-3;
   }
 
+  // 사진과 딥그린 패널이 한 덩어리. 모바일은 위아래, 데스크톱은 사진 왼쪽 아래에 패널이 걸친다.
   &__visual {
     position: relative;
-    margin: 0;
-    padding-bottom: s.$gap-7;
+
+    @include media.desktop-up {
+      padding-bottom: s.$gap-11;
+    }
   }
 
   &__photo {
     position: relative;
     aspect-ratio: 4 / 3;
     overflow: hidden;
-    border-radius: s.$shape-2xl;
+    border-radius: s.$shape-2xl s.$shape-2xl 0 0;
     background-color: var(--surface-muted);
 
+    // 로고가 걸린 벽이 가운데 오도록
     img {
       object-fit: cover;
-      object-position: 58% 50%;
+      object-position: 62% 50%;
     }
 
     @include media.desktop-up {
-      aspect-ratio: 6 / 7;
+      aspect-ratio: 5 / 4;
+      border-radius: s.$shape-2xl;
     }
   }
 
-  &__note {
-    position: absolute;
-    bottom: 0;
-    left: s.$gap-5;
+  &__panel {
     display: flex;
-    align-items: center;
-    gap: s.$gap-4;
-    padding: s.$gap-4 s.$gap-6 s.$gap-4 s.$gap-4;
-    border-radius: s.$shape-xl;
-    color: var(--text-primary);
-    background-color: var(--surface-card);
-    box-shadow: var(--shadow-raised);
-
-    strong {
-      display: block;
-
-      @include t.label-large;
-    }
-
-    small {
-      display: block;
-      color: var(--text-tertiary);
-
-      @include t.label-small;
-    }
+    flex-direction: column;
+    gap: s.$gap-2;
+    padding: s.$gap-7;
+    border-radius: 0 0 s.$shape-2xl s.$shape-2xl;
+    color: var(--text-on-inverse);
+    background-color: var(--surface-inverse);
 
     @include media.desktop-up {
-      left: -(s.$gap-8);
-      bottom: s.$gap-10;
+      position: absolute;
+      bottom: 0;
+      left: -(s.$gap-10);
+      width: 300px;
+      padding: s.$gap-8;
+      border-radius: s.$shape-2xl;
     }
   }
 
-  &__noteIcon {
-    display: inline-flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: var(--brand-gold-text);
-    background-color: var(--brand-gold-tint);
+  &__panelLabel {
+    color: var(--brand-gold-on-inverse);
+
+    @include t.label-medium;
+  }
+
+  &__panelTitle {
+    @include t.title-small;
+  }
+
+  &__panelText {
+    color: var(--text-on-inverse-muted);
+
+    @include t.body-small;
   }
 }
 

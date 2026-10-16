@@ -51,8 +51,8 @@
   &__badge {
     padding: s.$gap-1 s.$gap-3;
     border-radius: s.$shape-full;
-    color: var(--brand-gold-text);
-    background-color: var(--brand-gold-tint);
+    color: var(--text-brand);
+    background-color: var(--brand-tint);
 
     @include t.label-small;
   }
@@ -81,7 +81,7 @@
 
     &[aria-current="page"] {
       color: var(--text-primary);
-      background-color: var(--brand-gold-tint);
+      background-color: var(--brand-tint);
       font-weight: 600;
     }
   }
@@ -107,7 +107,7 @@
     display: inline-flex;
     align-items: center;
     gap: s.$gap-2;
-    color: var(--brand-gold-text);
+    color: var(--text-brand);
 
     @include t.label-small;
   }

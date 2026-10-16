@@ -12,7 +12,7 @@
   text-align: center;
 
   &__code {
-    color: var(--brand-gold-text);
+    color: var(--text-brand);
 
     @include t.display;
   }

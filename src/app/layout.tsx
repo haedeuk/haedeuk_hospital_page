@@ -1,4 +1,3 @@
-import { Hahmlet } from 'next/font/google';
 import localFont from 'next/font/local';
 import { NAVER_SITE_VERIFICATION } from '@/constants/clinic';
 import { SITE_DEFAULT_TITLE, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_URL } from '@/constants/site';
@@ -6,7 +5,7 @@ import '@/styles/index.scss';
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 
-// 본문 — 기존 사이트와 같은 Pretendard
+// 제목·본문 모두 Pretendard (기존 사이트와 같은 서체)
 const pretendard = localFont({
   src: [
     { path: '../assets/fonts/Pretendard-Regular.woff2', weight: '400', style: 'normal' },
@@ -16,14 +15,6 @@ const pretendard = localFont({
   ],
   variable: '--font-sans',
   display: 'swap',
-});
-
-// 제목 — 붓의 획 대비가 남아 있는 현대 명조. 한의원의 결과 대리석 로비의 단정함 사이를 잇는다.
-const hahmlet = Hahmlet({
-  subsets: ['latin'],
-  variable: '--font-serif',
-  display: 'swap',
-  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -56,14 +47,14 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#FAF9F7' },
-    { media: '(prefers-color-scheme: dark)', color: '#161412' },
+    { media: '(prefers-color-scheme: light)', color: '#FBFBF9' },
+    { media: '(prefers-color-scheme: dark)', color: '#0F1512' },
   ],
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ko" className={`${pretendard.variable} ${hahmlet.variable}`}>
+    <html lang="ko" className={pretendard.variable}>
       <body>{children}</body>
     </html>
   );

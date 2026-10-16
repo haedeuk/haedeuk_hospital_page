@@ -84,7 +84,7 @@
     display: inline-flex;
     align-items: center;
     gap: s.$gap-3;
-    color: var(--brand-gold-text);
+    color: var(--text-brand);
 
     @include t.label-medium;
   }

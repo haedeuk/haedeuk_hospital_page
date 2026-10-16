@@ -74,9 +74,9 @@
     justify-content: center;
     width: 88px;
     height: 88px;
-    border: 1px solid var(--brand-gold);
+    border: 1px solid var(--text-brand);
     border-radius: 50%;
-    color: var(--brand-gold-text);
+    color: var(--text-brand);
 
     @include t.title-medium;
   }
@@ -93,7 +93,7 @@
     input {
       width: 18px;
       height: 18px;
-      accent-color: var(--brand-gold);
+      accent-color: var(--text-brand);
     }
   }
 

@@ -71,7 +71,7 @@
     height: 56px;
     border: 1px solid var(--border-default);
     border-radius: 50%;
-    color: var(--brand-gold-text);
+    color: var(--text-brand);
     background-color: var(--surface-subtle);
 
     @include t.title-small;
@@ -85,7 +85,7 @@
 
   &__position {
     margin-top: s.$gap-1;
-    color: var(--brand-gold-text);
+    color: var(--text-brand);
 
     @include t.label-medium;
   }
@@ -123,8 +123,8 @@
     font-size: 11px;
 
     &--current {
-      color: var(--brand-gold-text);
-      background-color: var(--brand-gold-tint);
+      color: var(--text-brand);
+      background-color: var(--brand-tint);
     }
   }
 }

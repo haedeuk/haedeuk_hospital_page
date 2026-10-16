@@ -1,51 +1,58 @@
 // Primitive Tokens — 원색 팔레트
 //
-// 로비 사진에서 뽑았다: 스톤 화이트 대리석 벽, 짙은 마블 브라운 접수대, 금박 로고.
-// 금색은 로고처럼 작은 자리에만 쓰고, 넓은 면과 주요 버튼은 대리석·마블 브라운이 맡는다.
+// 한약재의 짙은 초록을 주색으로, 로고의 금박을 포인트로 쓴다.
+// 바탕은 거의 흰색이고, 넓은 초록 면(히어로 패널·진료시간표·푸터)이 리듬을 만든다.
 // 컴포넌트에서 직접 쓰지 않는다. _semantic.scss 가 의미를 붙여 내보낸다.
 
-// 스톤 (바탕)
-$stone-0: #ffffff;
-$stone-10: #faf9f7;
-$stone-20: #f2f0ec;
-$stone-30: #e9e5df;
-$stone-40: #ddd7cf;
+// 바탕
+$paper-0: #ffffff;
+$paper-10: #fbfbf9;
+$paper-20: #eef1ee;
+$paper-30: #e3e8e3;
+$paper-40: #d9dfda;
 
-// 잉크 (글자)
-$ink-40: #a59c92;
-$ink-50: #8a8178;
-$ink-60: #5e564e;
-$ink-80: #35302b;
-$ink-90: #1f1c19;
+// 잉크 (초록빛이 도는 검정)
+$ink-40: #a9b5ac;
+$ink-50: #7a867e;
+$ink-60: #56635b;
+$ink-80: #34413a;
+$ink-90: #1e2a23;
 
-// 마블 브라운 (접수대)
-$marble-60: #5c4c40;
-$marble-70: #4a3d33;
-$marble-80: #3a2f27;
+// 딥그린
+$green-50: #3d5a49;
+$green-60: #2f4639;
+$green-70: #24382d;
+$green-80: #1a2a21;
+$green-90: #13201a;
+
+// 세이지 (다크 모드 주색)
+$sage-20: #dbe7de;
+$sage-30: #bfd3c4;
+$sage-40: #a3bda9;
 
 // 금박 (로고)
-$gold-20: #efe3cb;
-$gold-30: #dcc394;
+$gold-20: #f1e6cf;
+$gold-30: #d8bc88;
 $gold-40: #c9a66b;
-$gold-50: #a8844a;
-$gold-60: #7d6233;
+$gold-50: #b08a3e;
+$gold-60: #8a6a2c;
 
-// 다크 (밤의 접수대)
-$night-95: #100e0c;
-$night-90: #161412;
-$night-85: #1b1815;
-$night-80: #1e1b18;
-$night-70: #2a2520;
-$night-60: #342e28;
-$night-50: #4a423a;
+// 다크 바탕
+$night-95: #0b100d;
+$night-90: #0f1512;
+$night-85: #121a15;
+$night-80: #151d18;
+$night-70: #1f2a23;
+$night-60: #2a362f;
+$night-50: #3c4a41;
 
 // 다크 글자
-$sand-10: #eee9e2;
-$sand-30: #b5aba0;
-$sand-40: #918779;
+$mist-10: #e6ece7;
+$mist-30: #a9b8ad;
+$mist-40: #84948a;
 
 // 상태
 $red-60: #a8432f;
 $red-30: #ec9583;
-$green-60: #3d7a52;
-$green-30: #8cc7a0;
+$leaf-60: #2f7a4a;
+$leaf-30: #8cc7a0;

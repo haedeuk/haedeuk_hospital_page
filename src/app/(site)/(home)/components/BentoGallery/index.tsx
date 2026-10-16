@@ -13,11 +13,7 @@ export default function BentoGallery() {
     <section className={styles.bento} aria-labelledby="bento-title">
       <div className={styles.bento__inner}>
         <div className={styles.bento__head}>
-          <SectionHeading
-            id="bento-title"
-            title="한의원 둘러보기"
-            description="실제 해득금천한의원의 로비, 진료실, 치료실, 입원실입니다."
-          />
+          <SectionHeading id="bento-title" title="한의원 둘러보기" />
           <ButtonLink href="/about" variant="secondary">
             시설 사진 더 보기
           </ButtonLink>

@@ -25,7 +25,7 @@ export default function TreatmentsPage() {
     <>
       <PageHeader
         title="진료항목"
-        description="증상과 체질을 살펴 침·약침·추나·한약·입원 치료를 함께 계획합니다."
+        description="교통사고 후유증과 통증 치료, 체질 한약, 입원 치료를 합니다."
         crumbs={CRUMBS}
       />
       <TreatmentNav />

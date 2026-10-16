@@ -100,7 +100,7 @@
     @include t.numeric;
 
     svg {
-      color: var(--brand-gold);
+      color: var(--text-brand);
     }
 
     &:hover {
@@ -169,7 +169,7 @@
   }
 
   &__title {
-    color: var(--brand-gold-text);
+    color: var(--text-brand);
 
     @include t.label-medium;
   }
@@ -201,7 +201,7 @@
     @include t.title-small;
 
     &[aria-current="page"] {
-      color: var(--brand-gold-text);
+      color: var(--text-brand);
     }
   }
 

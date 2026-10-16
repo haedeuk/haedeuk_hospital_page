@@ -43,9 +43,9 @@
     @include t.label-medium;
 
     &:hover {
-      border-color: var(--brand-gold);
+      border-color: var(--text-brand);
       color: var(--text-primary);
-      background-color: var(--brand-gold-tint);
+      background-color: var(--brand-tint);
     }
   }
 }

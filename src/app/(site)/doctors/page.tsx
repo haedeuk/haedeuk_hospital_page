@@ -31,7 +31,7 @@ export default function DoctorsPage() {
     <>
       <PageHeader
         title="의료진 소개"
-        description="진료실에서 직접 뵙게 될 해득금천한의원 원장님들을 소개합니다."
+        description="해득금천한의원 원장님들의 학력과 경력입니다."
         crumbs={CRUMBS}
       />
       <DoctorList />
