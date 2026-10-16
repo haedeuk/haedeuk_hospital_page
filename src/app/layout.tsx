@@ -1,21 +1,10 @@
-import localFont from 'next/font/local';
+import BootSplash from '@/components/BootSplash';
+import NavigationProgress from '@/components/NavigationProgress';
 import { NAVER_SITE_VERIFICATION } from '@/constants/clinic';
 import { SITE_DEFAULT_TITLE, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_URL } from '@/constants/site';
 import '@/styles/index.scss';
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-
-// 제목·본문 모두 Pretendard (기존 사이트와 같은 서체)
-const pretendard = localFont({
-  src: [
-    { path: '../assets/fonts/Pretendard-Regular.woff2', weight: '400', style: 'normal' },
-    { path: '../assets/fonts/Pretendard-Medium.woff2', weight: '500', style: 'normal' },
-    { path: '../assets/fonts/Pretendard-SemiBold.woff2', weight: '600', style: 'normal' },
-    { path: '../assets/fonts/Pretendard-Bold.woff2', weight: '700', style: 'normal' },
-  ],
-  variable: '--font-sans',
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -52,10 +41,29 @@ export const viewport: Viewport = {
   ],
 };
 
+// 첫 페인트 전에 실행되는 준비 스크립트. JS 가 없으면 아무것도 숨기지 않는다.
+//  1) 스크롤 등장 애니메이션 준비 — 관찰자가 3초 안에 뜨지 않으면 숨김을 풀어 내용이 사라진 채로 남지 않게 한다.
+//  2) 첫 방문 보딩화면 — 같은 방문(sessionStorage)에서 처음 한 번만. 무슨 일이 있어도 5초 뒤에는 걷힌다.
+const BOOTSTRAP = [
+  'var d=document.documentElement;',
+  'd.classList.add(\'reveal-ready\');',
+  'setTimeout(function(){if(!window.__revealReady)d.classList.remove(\'reveal-ready\')},3000);',
+  'try{if(!sessionStorage.getItem(\'hd-booted\')){d.classList.add(\'booting\');',
+  'setTimeout(function(){d.classList.add(\'booted\');setTimeout(function(){d.classList.remove(\'booting\',\'booted\')},600)},5000)}}catch(e){}',
+].join('');
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="ko" className={pretendard.variable}>
-      <body>{children}</body>
+    // data-scroll-behavior: 페이지를 옮길 때는 부드러운 스크롤을 끄고 바로 맨 위로 보낸다(Next 가 읽는 표시)
+    <html lang="ko" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: BOOTSTRAP }} />
+      </head>
+      <body>
+        <BootSplash />
+        <NavigationProgress />
+        {children}
+      </body>
     </html>
   );
 }

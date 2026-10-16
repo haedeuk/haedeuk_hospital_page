@@ -1,0 +1,89 @@
+@use "styles/patterns/container" as c;
+@use "styles/tokens/motion" as m;
+@use "styles/tokens/spacing" as s;
+@use "styles/utils/media" as media;
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: s.$gap-10;
+
+  // 짧은 로딩에서 깜빡이지 않게 잠깐 뒤에 나타난다
+  animation: skeleton-in m.$duration-base m.$ease-standard 200ms both;
+
+  &--site {
+    padding-block: s.$gap-11 s.$gap-12;
+
+    @include c.container;
+  }
+
+  &--admin {
+    max-width: 960px;
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-4;
+  }
+
+  &__grid {
+    display: grid;
+    gap: s.$gap-6;
+
+    @include media.tablet-up {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &__rows {
+    display: flex;
+    flex-direction: column;
+    gap: s.$gap-3;
+  }
+
+  // 옅은 빛이 왼쪽에서 오른쪽으로 지나간다
+  &__block {
+    display: block;
+    border-radius: s.$shape-md;
+    background: linear-gradient(100deg, var(--surface-muted) 30%, var(--surface-subtle) 50%, var(--surface-muted) 70%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+
+    @include media.reduced-motion {
+      animation: none;
+    }
+
+    &--title {
+      width: min(320px, 70%);
+      height: 40px;
+    }
+
+    &--line {
+      width: min(480px, 90%);
+      height: 18px;
+    }
+
+    &--card {
+      aspect-ratio: 4 / 3;
+      border-radius: s.$shape-xl;
+    }
+
+    &--row {
+      height: 72px;
+      border-radius: s.$shape-lg;
+    }
+  }
+}
+
+@keyframes skeleton-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}

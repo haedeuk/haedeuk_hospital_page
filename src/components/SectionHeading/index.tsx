@@ -1,3 +1,4 @@
+import { reveal } from '@/utils/ts/reveal';
 import styles from './SectionHeading.module.scss';
 import type { ReactNode } from 'react';
 
@@ -10,7 +11,7 @@ interface SectionHeadingProps {
 
 export default function SectionHeading({ title, description, align = 'left', id }: SectionHeadingProps) {
   return (
-    <div className={`${styles.heading} ${align === 'center' ? styles['heading--center'] : ''}`}>
+    <div className={`${styles.heading} ${align === 'center' ? styles['heading--center'] : ''}`} {...reveal()}>
       <h2 className={styles.heading__title} id={id}>
         {title}
       </h2>

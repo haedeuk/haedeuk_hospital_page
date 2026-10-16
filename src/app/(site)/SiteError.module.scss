@@ -1,0 +1,29 @@
+@use "styles/tokens/motion" as m;
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+// ButtonLink 의 primary 와 같은 모양의 실제 버튼 (다시 시도는 링크가 아니라 동작이다)
+.retry {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 s.$gap-7;
+  border: 0;
+  border-radius: s.$shape-md;
+  color: var(--action-on-primary);
+  background-color: var(--action-primary);
+  transition:
+    background-color m.$duration-base m.$ease-standard,
+    transform m.$duration-fast m.$ease-out;
+
+  @include t.label-large;
+
+  &:hover {
+    background-color: var(--action-primary-hover);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}

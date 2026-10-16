@@ -1,3 +1,4 @@
+@use "styles/tokens/motion" as m;
 @use "styles/tokens/spacing" as s;
 @use "styles/tokens/typography" as t;
 @use "styles/utils/media" as media;
@@ -11,6 +12,11 @@
 
   &--editing {
     background-color: var(--brand-tint);
+    animation: row-in m.$duration-base m.$ease-out;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
   }
 
   &--new {
@@ -156,5 +162,11 @@
 
   &:hover {
     background-color: var(--brand-tint);
+  }
+}
+
+@keyframes row-in {
+  from {
+    opacity: 0.4;
   }
 }

@@ -1,3 +1,4 @@
+@use "styles/tokens/motion" as m;
 @use "styles/tokens/spacing" as s;
 @use "styles/tokens/typography" as t;
 
@@ -10,6 +11,31 @@
   border-radius: s.$shape-md;
   color: var(--status-success);
   background-color: var(--status-success-tint);
+  animation: notice-in m.$duration-slow m.$ease-out;
 
   @include t.label-medium;
+
+  svg {
+    animation: notice-check m.$duration-slow m.$ease-spring 150ms both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &,
+    svg {
+      animation: none;
+    }
+  }
+}
+
+@keyframes notice-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes notice-check {
+  from {
+    transform: scale(0.3);
+  }
 }

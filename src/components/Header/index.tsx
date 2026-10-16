@@ -19,18 +19,32 @@ export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // 스크롤하면 헤더 아래에 경계선이 생긴다. 렌더를 일으키지 않게 data 속성만 바꾼다.
+  // 스크롤하면 경계선이 생기고, 아래로 내리면 숨고 위로 올리면 다시 나타난다.
+  // 렌더를 일으키지 않게 data 속성만 바꾼다. 진료항목 바로가기처럼 헤더 밑에 붙는 요소는
+  // html[data-header-hidden] 을 보고 위치를 따라온다.
   useEffect(() => {
     const header = headerRef.current;
     if (!header) return undefined;
 
+    let lastY = window.scrollY;
     const update = () => {
-      header.dataset.scrolled = String(window.scrollY > 8);
+      const y = window.scrollY;
+      const hidden = y > 160 && y > lastY + 4 ? true : y < lastY - 4 || y <= 160 ? false : null;
+
+      header.dataset.scrolled = String(y > 8);
+      if (hidden !== null) {
+        header.dataset.hidden = String(hidden);
+        document.documentElement.dataset.headerHidden = String(hidden);
+      }
+      lastY = y;
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
 
-    return () => window.removeEventListener('scroll', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      delete document.documentElement.dataset.headerHidden;
+    };
   }, []);
 
   return (

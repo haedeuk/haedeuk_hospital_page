@@ -16,7 +16,7 @@ export default function Hero() {
             체질 맞춤 처방
           </h1>
           <p className={styles.hero__description}>
-            아침 8시부터 진료합니다. 평일은 밤 9시, 주말과 공휴일은 오후 5시까지 문을 엽니다.
+            {'아침\u00a08시부터 진료합니다.\n평일은 저녁\u00a09시, 주말과 공휴일은 오후\u00a05시까지 진료합니다.'}
           </p>
           <div className={styles.hero__actions}>
             <ButtonLink href={CLINIC.phoneHref} icon={<PhoneIcon size={18} />}>
@@ -44,7 +44,7 @@ export default function Hero() {
           <div className={styles.hero__panel}>
             <p className={styles.hero__panelLabel}>365일 진료</p>
             <p className={styles.hero__panelTitle}>입원실을 운영합니다</p>
-            <p className={styles.hero__panelText}>입원 치료가 필요하면 당일에도 입원하실 수 있습니다.</p>
+            <p className={styles.hero__panelText}>필요하시면 당일 입원도 가능합니다.</p>
           </div>
         </div>
       </div>

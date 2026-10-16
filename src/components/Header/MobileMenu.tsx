@@ -7,6 +7,7 @@ import { CalendarIcon, CloseIcon, PhoneIcon } from '@/components/Icons';
 import { CLINIC, CLINIC_LINKS } from '@/constants/clinic';
 import { NAV_ITEMS } from '@/constants/navigation';
 import styles from './Header.module.scss';
+import type { CSSProperties } from 'react';
 
 interface MobileMenuProps {
   pathname: string;
@@ -46,8 +47,8 @@ export default function MobileMenu({ pathname, onClose }: MobileMenuProps) {
         </div>
         <nav aria-label="모바일 메뉴">
           <ul className={styles.drawer__list}>
-            {NAV_ITEMS.map((item) => (
-              <li key={item.href}>
+            {NAV_ITEMS.map((item, index) => (
+              <li key={item.href} className={styles.drawer__item} style={{ '--i': index } as CSSProperties}>
                 <Link
                   href={item.href}
                   className={styles.drawer__link}

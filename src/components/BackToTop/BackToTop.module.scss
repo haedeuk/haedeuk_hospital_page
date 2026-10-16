@@ -1,0 +1,62 @@
+@use "styles/tokens/motion" as m;
+@use "styles/tokens/spacing" as s;
+@use "styles/utils/media" as media;
+
+// 모바일·태블릿: 하단 고정 바 위 / 1200px 이상: 떠 있는 연락 버튼 묶음 위
+.top {
+  position: fixed;
+  right: s.$gutter-mobile;
+  bottom: calc(76px + env(safe-area-inset-bottom));
+  z-index: s.$z-floating;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--border-default);
+  border-radius: 50%;
+  color: var(--text-primary);
+  background-color: var(--surface-card);
+  box-shadow: var(--shadow-hover);
+  opacity: 0;
+  transform: translateY(12px) scale(0.9);
+  pointer-events: none;
+  transition:
+    opacity m.$duration-base m.$ease-standard,
+    transform m.$duration-slow m.$ease-out,
+    border-color m.$duration-base m.$ease-standard;
+
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    border-color: var(--text-primary);
+  }
+
+  &:active {
+    transform: scale(0.94);
+  }
+
+  @include media.wide-up {
+    right: 34px;
+    bottom: 236px;
+  }
+
+  @include media.reduced-motion {
+    transform: none;
+    transition: opacity m.$duration-base;
+
+    &:active {
+      transform: none;
+    }
+  }
+
+  // 왼쪽 화살표 아이콘을 위쪽으로 돌려 쓴다
+  &__icon {
+    transform: rotate(90deg);
+  }
+}

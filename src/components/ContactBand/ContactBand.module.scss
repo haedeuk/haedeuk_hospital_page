@@ -34,6 +34,7 @@
 
   &__description {
     color: var(--text-on-inverse-muted);
+    white-space: pre-line;
 
     @include t.body-medium;
   }

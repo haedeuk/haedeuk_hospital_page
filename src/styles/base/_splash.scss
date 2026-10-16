@@ -1,0 +1,100 @@
+// 첫 방문 보딩화면 (전역)
+//
+// html.booting 은 head 의 인라인 스크립트가 붙이고(같은 방문에서 처음 한 번만), BootSplash 가
+// 글꼴·첫 화면 사진·하이드레이션이 끝나면 html.booted 를 붙여 걷어 낸다.
+// JS 가 없으면 html.booting 이 붙지 않아 보딩화면이 아예 나오지 않는다.
+
+@use "styles/tokens/motion" as m;
+
+.boot-splash {
+  display: none;
+}
+
+html.booting .boot-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  color: var(--text-on-inverse);
+  background-color: var(--surface-inverse);
+  transition:
+    opacity 600ms m.$ease-out,
+    visibility 0s linear 600ms;
+}
+
+// 보딩화면이 떠 있는 동안 뒤 페이지가 스크롤되지 않게
+html.booting:not(.booted) body {
+  overflow: hidden;
+}
+
+html.booting.booted .boot-splash {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.boot-splash__logo {
+  width: min(220px, 58vw);
+  height: auto;
+  animation: boot-logo 900ms m.$ease-out both;
+}
+
+html.booting.booted .boot-splash__logo {
+  transform: scale(0.97);
+  transition: transform 600ms m.$ease-out;
+}
+
+// 금색 진행선: 끝을 모르는 대기라 좌우로 흐른다
+.boot-splash__bar {
+  position: relative;
+  width: 120px;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background-color: var(--border-on-inverse);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 40%;
+    border-radius: inherit;
+    background-color: var(--brand-gold-on-inverse);
+    animation: boot-bar 1.2s m.$ease-standard infinite;
+  }
+}
+
+.boot-splash__text {
+  color: var(--text-on-inverse-muted);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  animation: boot-logo 900ms 150ms m.$ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boot-splash__logo,
+  .boot-splash__text,
+  .boot-splash__bar::after {
+    animation: none;
+  }
+}
+
+@keyframes boot-logo {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes boot-bar {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(250%);
+  }
+}

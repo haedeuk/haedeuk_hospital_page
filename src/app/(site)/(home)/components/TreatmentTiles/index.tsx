@@ -3,6 +3,7 @@ import Link from 'next/link';
 import ButtonLink from '@/components/ButtonLink';
 import SectionHeading from '@/components/SectionHeading';
 import { TREATMENTS } from '@/constants/treatments';
+import { reveal } from '@/utils/ts/reveal';
 import styles from './TreatmentTiles.module.scss';
 
 export default function TreatmentTiles() {
@@ -13,15 +14,15 @@ export default function TreatmentTiles() {
           <SectionHeading
             id="treatments-title"
             title="진료항목"
-            description="교통사고 후유증 치료는 물론 재활 치료와 입원 치료도 합니다."
+            description="통증 치료부터 체질 한약, 입원 치료까지 진료합니다."
           />
           <ButtonLink href="/treatments" variant="secondary">
             진료항목 자세히 보기
           </ButtonLink>
         </div>
-        <ul className={styles.treatments__grid}>
+        <ul className={styles.treatments__grid} data-reveal-stagger="">
           {TREATMENTS.map((treatment) => (
-            <li key={treatment.id}>
+            <li key={treatment.id} {...reveal()}>
               <Link className={styles.treatments__item} href={`/treatments#${treatment.id}`}>
                 <span className={styles.treatments__media}>
                   <Image

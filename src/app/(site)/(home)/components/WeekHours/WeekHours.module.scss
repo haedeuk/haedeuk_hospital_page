@@ -1,5 +1,6 @@
 @use "styles/patterns/container" as c;
 @use "styles/tokens/spacing" as s;
+@use "styles/tokens/motion" as m;
 @use "styles/tokens/typography" as t;
 @use "styles/utils/media" as media;
 
@@ -38,6 +39,7 @@
   &__description {
     max-width: 30em;
     color: var(--text-on-inverse-muted);
+    white-space: pre-line;
 
     @include t.body-medium;
   }
@@ -100,6 +102,26 @@
     width: 100%;
     border-radius: s.$shape-md;
     background-color: var(--hours-weekday);
+    transform-origin: top;
+    transition: transform 900ms m.$ease-out;
+    transition-delay: calc(var(--reveal-index, 0) * 70ms + 150ms);
+
+    // 등장 준비 상태에서만 비워 둔다 (JS 가 없으면 처음부터 차 있다)
+    :global(html.reveal-ready) & {
+      transform: scaleY(0);
+    }
+
+    :global(html.reveal-ready) [data-revealed] > .week__track > & {
+      transform: scaleY(1);
+    }
+
+    @include media.reduced-motion {
+      transition: none;
+
+      :global(html.reveal-ready) & {
+        transform: none;
+      }
+    }
   }
 
   &__time {

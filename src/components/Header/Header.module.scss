@@ -1,4 +1,5 @@
 @use "styles/patterns/container" as c;
+@use "styles/tokens/motion" as m;
 @use "styles/tokens/spacing" as s;
 @use "styles/tokens/typography" as t;
 @use "styles/utils/media" as media;
@@ -10,10 +11,17 @@
   border-bottom: 1px solid transparent;
   background-color: var(--surface-header);
   backdrop-filter: saturate(140%) blur(14px);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    border-color m.$duration-base m.$ease-standard,
+    transform m.$duration-slow m.$ease-out;
 
   &[data-scrolled="true"] {
     border-bottom-color: var(--border-subtle);
+  }
+
+  // 아래로 스크롤하면 숨는다. 키보드로 헤더 안에 들어오면 다시 보인다.
+  &[data-hidden="true"]:not(:focus-within) {
+    transform: translateY(-100%);
   }
 
   &__inner {
@@ -192,6 +200,15 @@
     flex-direction: column;
   }
 
+  &__item {
+    animation: drawer-item m.$duration-slow m.$ease-out both;
+    animation-delay: calc(var(--i, 0) * 50ms + 120ms);
+
+    @include media.reduced-motion {
+      animation: none;
+    }
+  }
+
   &__link {
     display: block;
     padding-block: s.$gap-5;
@@ -242,5 +259,12 @@
 @keyframes slide-in {
   from {
     transform: translateX(100%);
+  }
+}
+
+@keyframes drawer-item {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
   }
 }

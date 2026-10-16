@@ -7,6 +7,6 @@ export const contentType = OG_CONTENT_TYPE;
 export default function Image() {
   return renderOgImage({
     title: '비급여 진료비용',
-    description: '항목별 비급여 진료비용 고지',
+    description: '비급여 항목의 진료비용 안내',
   });
 }

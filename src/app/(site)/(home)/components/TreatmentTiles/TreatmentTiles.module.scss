@@ -1,4 +1,5 @@
 @use "styles/patterns/container" as c;
+@use "styles/tokens/motion" as m;
 @use "styles/tokens/spacing" as s;
 @use "styles/tokens/typography" as t;
 @use "styles/utils/media" as media;
@@ -46,10 +47,16 @@
     flex-direction: column;
     gap: s.$gap-2;
 
-    &:hover .treatments__title {
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 6px;
+    @include media.hover-supported {
+      &:hover {
+        .treatments__media img {
+          transform: scale(1.05);
+        }
+
+        .treatments__title {
+          background-size: 100% 1px;
+        }
+      }
     }
   }
 
@@ -63,10 +70,19 @@
 
     img {
       object-fit: cover;
+      transition: transform 900ms m.$ease-out;
+
+      @include media.reduced-motion {
+        transition: none;
+      }
     }
   }
 
+  // 밑줄이 왼쪽에서 자라난다
   &__title {
+    align-self: flex-start;
+    background: linear-gradient(currentcolor, currentcolor) left bottom / 0 1px no-repeat;
+    transition: background-size m.$duration-slow m.$ease-out;
     color: var(--text-primary);
 
     @include t.title-small;

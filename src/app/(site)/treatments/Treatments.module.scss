@@ -12,11 +12,5 @@
 
     @include c.container;
     @include t.body-small;
-
-    a {
-      color: var(--text-brand);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
   }
 }

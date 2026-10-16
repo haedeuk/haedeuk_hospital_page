@@ -3,6 +3,7 @@ import { getFees } from '@/lib/repository/fees';
 import { formatDate } from '@/utils/ts/formatDate';
 import { formatFee } from '@/utils/ts/formatFee';
 import { groupFees, latestUpdatedAt } from '@/utils/ts/groupFees';
+import { reveal } from '@/utils/ts/reveal';
 import styles from './FeeTable.module.scss';
 
 export default async function FeeTable() {
@@ -22,7 +23,7 @@ export default async function FeeTable() {
         </div>
 
         {groups.map((group) => (
-          <div key={group.category} className={styles.fees__group}>
+          <div key={group.category} className={styles.fees__group} {...reveal()}>
             <h2 className={styles.fees__category}>
               {group.category}
               <span className={styles.fees__count}>{group.fees.length}개 항목</span>
@@ -47,10 +48,10 @@ export default async function FeeTable() {
           </div>
         ))}
 
-        <ul className={styles.fees__notice}>
-          <li>진료비는 환자분의 상태와 치료 내용에 따라 달라질 수 있습니다.</li>
+        <ul className={styles.fees__notice} {...reveal()}>
+          <li>진료비는 상태와 치료 내용에 따라 달라질 수 있습니다.</li>
           <li>
-            자세한 내용은 전화(<a href={CLINIC.phoneHref}>{CLINIC.phone}</a>)로 문의해 주세요.
+            궁금하신 점은 전화(<a href={CLINIC.phoneHref}>{CLINIC.phone}</a>)로 편하게 문의해 주세요.
           </li>
         </ul>
       </div>

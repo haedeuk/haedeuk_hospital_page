@@ -65,6 +65,8 @@
   // ── Elevation ────────────────────────────────────────────
   // 그림자는 떠 있는 것(서랍·대화상자·떠 있는 버튼)에만 쓴다.
   --shadow-raised: 0 18px 48px rgb(19, 32, 26, 0.16);
+  // 마우스를 올린 버튼·카드
+  --shadow-hover: 0 8px 20px rgb(19, 32, 26, 0.12);
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -108,5 +110,6 @@
     --status-success-tint: rgb(140, 199, 160, 0.12);
 
     --shadow-raised: 0 18px 48px rgb(0, 0, 0, 0.5);
+    --shadow-hover: 0 8px 20px rgb(0, 0, 0, 0.4);
   }
 }

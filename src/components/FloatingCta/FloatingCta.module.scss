@@ -1,3 +1,4 @@
+@use "styles/tokens/motion" as m;
 @use "styles/tokens/spacing" as s;
 @use "styles/tokens/typography" as t;
 @use "styles/utils/media" as media;
@@ -24,6 +25,7 @@
   }
 
   &__item {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,6 +33,7 @@
     gap: s.$gap-1;
     min-height: 60px;
     color: var(--text-primary);
+    transition: transform m.$duration-fast m.$ease-out;
 
     @include t.label-small;
 
@@ -38,12 +41,41 @@
       color: var(--text-brand);
     }
 
+    &:active {
+      transform: scale(0.95);
+    }
+
+    // 전화 버튼: 모바일은 수화기가 가끔 흔들리고, 데스크톱은 잔물결이 퍼진다
     &:first-child {
       color: var(--action-on-primary);
       background-color: var(--action-primary);
 
       svg {
         color: currentcolor;
+        animation: ring 5s m.$ease-standard 2s infinite;
+      }
+
+      @include media.wide-up {
+        svg {
+          animation: none;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          box-shadow: 0 0 0 0 var(--action-primary);
+          animation: ripple 2.8s m.$ease-out 1.5s infinite;
+          pointer-events: none;
+        }
+      }
+
+      @include media.reduced-motion {
+        svg,
+        &::after {
+          animation: none;
+        }
       }
     }
 
@@ -83,5 +115,35 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
       pointer-events: none;
     }
+  }
+}
+
+@keyframes ring {
+  0%,
+  8%,
+  100% {
+    transform: none;
+  }
+
+  2%,
+  6% {
+    transform: rotate(-14deg);
+  }
+
+  4% {
+    transform: rotate(14deg);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 var(--action-primary);
+    opacity: 0.55;
+  }
+
+  70%,
+  100% {
+    box-shadow: 0 0 0 18px var(--action-primary);
+    opacity: 0;
   }
 }

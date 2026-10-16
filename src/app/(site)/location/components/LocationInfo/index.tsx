@@ -4,6 +4,7 @@ import HoursList from '@/components/HoursList';
 import { CalendarIcon, ChatIcon, ClockIcon, MapPinIcon, PhoneIcon, WalletIcon } from '@/components/Icons';
 import KakaoMap from '@/components/KakaoMap';
 import { CLINIC, CLINIC_ACCESS, CLINIC_LINKS } from '@/constants/clinic';
+import { reveal } from '@/utils/ts/reveal';
 import AddressCopy from '../AddressCopy';
 import styles from './LocationInfo.module.scss';
 
@@ -12,8 +13,10 @@ export default function LocationInfo() {
     <section className={styles.location} aria-label="위치와 진료시간">
       <div className={styles.location__inner}>
         <div className={styles.location__mapColumn}>
-          <KakaoMap className={styles.location__map} />
-          <div className={styles.location__access}>
+          <div {...reveal('fade')}>
+            <KakaoMap className={styles.location__map} />
+          </div>
+          <div className={styles.location__access} {...reveal()}>
             <h2 className={styles.location__heading}>
               <MapPinIcon size={18} />
               찾아오시는 길
@@ -23,7 +26,7 @@ export default function LocationInfo() {
           </div>
         </div>
 
-        <div className={styles.location__panel}>
+        <div className={styles.location__panel} {...reveal()}>
           <div className={styles.location__block}>
             <h2 className={styles.location__heading}>
               <MapPinIcon size={18} />
@@ -65,7 +68,7 @@ export default function LocationInfo() {
               진료시간
             </h2>
             <HoursList />
-            <p className={styles.location__note}>입원은 당일에도 가능하고 365일 언제든 하실 수 있습니다.</p>
+            <p className={styles.location__note}>입원은 365일 가능하며, 당일 입원도 하실 수 있습니다.</p>
           </div>
 
           <div className={styles.location__block}>

@@ -2,6 +2,7 @@ import Image from 'next/image';
 import ButtonLink from '@/components/ButtonLink';
 import SectionHeading from '@/components/SectionHeading';
 import { GALLERY } from '@/constants/gallery';
+import { reveal } from '@/utils/ts/reveal';
 import styles from './BentoGallery.module.scss';
 
 // 로비, 진료실, 치료실, 입원실, 입구 다섯 장을 격자로
@@ -18,9 +19,9 @@ export default function BentoGallery() {
             시설 사진 더 보기
           </ButtonLink>
         </div>
-        <ul className={styles.bento__grid}>
+        <ul className={styles.bento__grid} data-reveal-stagger="">
           {ITEMS.map((item, index) => (
-            <li key={item.caption} className={styles.bento__item}>
+            <li key={item.caption} className={styles.bento__item} {...reveal('zoom')}>
               <figure className={styles.bento__figure}>
                 <Image
                   src={item.src}

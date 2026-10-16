@@ -1,0 +1,62 @@
+// 스크롤 등장 애니메이션 (전역)
+//
+// 서버 컴포넌트는 data-reveal 만 붙이고, ScrollReveal 이 화면에 들어온 요소에 data-revealed 를 단다.
+// html.reveal-ready 는 head 의 인라인 스크립트가 붙인다 — JS 가 없으면 처음부터 모두 보인다.
+//   data-reveal=""      아래에서 떠오르기 (기본)
+//   data-reveal="fade"  제자리에서 나타나기
+//   data-reveal="zoom"  살짝 줄어들며 나타나기 (사진)
+//   data-reveal="left" / "right"  옆에서 들어오기 (좌우 분할 섹션)
+// data-reveal-stagger 가 붙은 부모의 직계 자식들은 순서대로 늦게 나온다(--reveal-index, 최대 8칸).
+// 순번을 JS 로 달면 하이드레이션 전에 DOM 이 바뀌어 React 가 경고하므로 CSS 로만 매긴다.
+
+@use "styles/tokens/motion" as m;
+
+html.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, m.$reveal-distance, 0);
+  transition:
+    opacity m.$duration-reveal m.$ease-out,
+    transform m.$duration-reveal m.$ease-out;
+  transition-delay: calc(var(--reveal-index, 0) * #{m.$reveal-stagger});
+}
+
+[data-reveal-stagger] > [data-reveal] {
+  @for $i from 1 through 8 {
+    &:nth-child(#{$i + 1}) {
+      --reveal-index: #{$i};
+    }
+  }
+
+  &:nth-child(n + 10) {
+    --reveal-index: 8;
+  }
+}
+
+html.reveal-ready [data-reveal="fade"] {
+  transform: none;
+}
+
+html.reveal-ready [data-reveal="zoom"] {
+  transform: scale(0.97);
+}
+
+html.reveal-ready [data-reveal="left"] {
+  transform: translate3d(-24px, 0, 0);
+}
+
+html.reveal-ready [data-reveal="right"] {
+  transform: translate3d(24px, 0, 0);
+}
+
+html.reveal-ready [data-reveal][data-revealed] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

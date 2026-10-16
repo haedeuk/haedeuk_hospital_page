@@ -1,4 +1,6 @@
 import { LUNCH_BREAK, OPENING_HOURS } from '@/constants/clinic';
+import { formatClock } from '@/utils/ts/formatDate';
+import { reveal } from '@/utils/ts/reveal';
 import styles from './WeekHours.module.scss';
 
 const DAY_LABELS: Record<string, string> = {
@@ -33,17 +35,21 @@ export default function WeekHours() {
   return (
     <section className={styles.week} aria-labelledby="week-title">
       <div className={styles.week__inner}>
-        <div className={styles.week__text}>
+        <div className={styles.week__text} {...reveal()}>
           <h2 className={styles.week__title} id="week-title">
             365일 연중무휴
           </h2>
           <p className={styles.week__description}>
-            일요일과 공휴일에도 진료합니다. 점심시간은 {LUNCH_BREAK.open}부터 {LUNCH_BREAK.close}까지입니다.
+            {`일요일과 공휴일에도 진료합니다.\n점심시간은 ${formatClock(LUNCH_BREAK.open)}부터 ${formatClock(LUNCH_BREAK.close)}까지입니다.`}
           </p>
         </div>
-        <ol className={styles.week__days}>
+        <ol className={styles.week__days} data-reveal-stagger="">
           {DAYS.map((day) => (
-            <li key={day.key} className={`${styles.week__day} ${day.isWeekend ? styles['week__day--weekend'] : ''}`}>
+            <li
+              key={day.key}
+              className={`${styles.week__day} ${day.isWeekend ? styles['week__day--weekend'] : ''}`}
+              {...reveal('fade')}
+            >
               <span className={styles.week__label}>{day.label}</span>
               <span className={styles.week__track} aria-hidden="true">
                 <span className={styles.week__bar} style={{ height: `${day.ratio * 100}%` }} />

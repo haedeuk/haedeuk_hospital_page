@@ -51,6 +51,7 @@
   &__description {
     max-width: 620px;
     color: var(--text-secondary);
+    white-space: pre-line;
 
     @include t.body-large;
   }

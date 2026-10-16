@@ -1,5 +1,6 @@
 @use "styles/patterns/container" as c;
 @use "styles/tokens/spacing" as s;
+@use "styles/tokens/motion" as m;
 @use "styles/tokens/typography" as t;
 @use "styles/utils/media" as media;
 
@@ -31,6 +32,11 @@
     gap: s.$gap-7;
     animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
 
+    // 보딩화면이 떠 있는 동안 멈춰 있다가 걷히면 이어서 재생한다
+    :global(html.booting:not(.booted)) & {
+      animation-play-state: paused;
+    }
+
     @include media.reduced-motion {
       animation: none;
     }
@@ -43,8 +49,9 @@
   }
 
   &__description {
-    max-width: 26em;
+    max-width: 30em;
     color: var(--text-secondary);
+    white-space: pre-line;
 
     @include t.body-large;
   }
@@ -75,6 +82,15 @@
     img {
       object-fit: cover;
       object-position: 62% 50%;
+      animation: settle 1.6s m.$ease-out both;
+
+      :global(html.booting:not(.booted)) & {
+        animation-play-state: paused;
+      }
+
+      @include media.reduced-motion {
+        animation: none;
+      }
     }
 
     @include media.desktop-up {
@@ -91,6 +107,15 @@
     border-radius: 0 0 s.$shape-2xl s.$shape-2xl;
     color: var(--text-on-inverse);
     background-color: var(--surface-inverse);
+    animation: rise 0.9s 0.25s m.$ease-out both;
+
+    :global(html.booting:not(.booted)) & {
+      animation-play-state: paused;
+    }
+
+    @include media.reduced-motion {
+      animation: none;
+    }
 
     @include media.desktop-up {
       position: absolute;
@@ -116,6 +141,12 @@
     color: var(--text-on-inverse-muted);
 
     @include t.body-small;
+  }
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.06);
   }
 }
 

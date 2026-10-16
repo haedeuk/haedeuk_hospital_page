@@ -21,7 +21,7 @@ export default function AboutPage() {
     <>
       <PageHeader
         title="해득금천한의원"
-        description="개개인의 맞춤 진료를 통해 환자분들께 최선을 다하는 것, 해득금천의 진료 철학입니다."
+        description={'한 분 한 분에게 맞춘 진료로 최선을 다하는 것,\n해득금천의 진료 철학입니다.'}
         crumbs={CRUMBS}
       />
       <Philosophy />

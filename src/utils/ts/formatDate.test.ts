@@ -16,6 +16,7 @@ describe('formatClock', () => {
     ['21:00', '오후 9시'],
     ['00:00', '오전 12시'],
   ])('%s → %s', (input, expected) => {
-    expect(formatClock(input)).toBe(expected);
+    // 화면에서 줄이 갈라지지 않게 줄바꿈 없는 공백(U+00A0)으로 잇는다
+    expect(formatClock(input)).toBe(expected.replace(/ /g, '\u00a0'));
   });
 });

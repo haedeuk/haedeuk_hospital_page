@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { CheckIcon } from '@/components/Icons';
 import type { Treatment } from '@/constants/treatments';
+import { reveal } from '@/utils/ts/reveal';
 import styles from './TreatmentSection.module.scss';
 
 interface TreatmentSectionProps {
@@ -16,7 +17,7 @@ export default function TreatmentSection({ treatment, isReversed }: TreatmentSec
       className={`${styles.section} ${isReversed ? styles['section--reversed'] : ''}`}
       aria-labelledby={`${treatment.id}-title`}
     >
-      <figure className={styles.section__media}>
+      <figure className={styles.section__media} {...reveal(isReversed ? 'right' : 'left')}>
         <Image
           src={treatment.image}
           alt={treatment.alt}
@@ -25,7 +26,7 @@ export default function TreatmentSection({ treatment, isReversed }: TreatmentSec
           sizes="(width <= 900px) 100vw, 560px"
         />
       </figure>
-      <div className={styles.section__body}>
+      <div className={styles.section__body} {...reveal()}>
         <h2 className={styles.section__title} id={`${treatment.id}-title`}>
           {treatment.title}
         </h2>

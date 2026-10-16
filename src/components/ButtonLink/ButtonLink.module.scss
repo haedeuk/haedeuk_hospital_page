@@ -1,4 +1,5 @@
 @use "styles/tokens/spacing" as s;
+@use "styles/tokens/motion" as m;
 @use "styles/tokens/typography" as t;
 @use "styles/utils/media" as media;
 
@@ -12,12 +13,47 @@
   border: 1px solid transparent;
   border-radius: s.$shape-md;
   white-space: nowrap;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color m.$duration-base m.$ease-standard,
+    border-color m.$duration-base m.$ease-standard,
+    color m.$duration-base m.$ease-standard,
+    box-shadow m.$duration-base m.$ease-standard,
+    transform m.$duration-base m.$ease-out;
 
   @include t.label-large;
 
+  svg {
+    transition: transform m.$duration-slow m.$ease-spring;
+  }
+
+  @include media.hover-supported {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+
+      svg {
+        transform: rotate(-12deg) scale(1.08);
+      }
+    }
+  }
+
   &:active {
-    transform: translateY(1px);
+    transform: translateY(0) scale(0.97);
+    box-shadow: none;
+    transition-duration: m.$duration-fast;
+  }
+
+  @include media.reduced-motion {
+    &,
+    svg {
+      transition: background-color m.$duration-base, border-color m.$duration-base, color m.$duration-base;
+    }
+
+    &:hover,
+    &:active,
+    &:hover svg {
+      transform: none;
+    }
   }
 
   &--primary {

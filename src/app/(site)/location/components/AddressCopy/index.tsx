@@ -18,8 +18,8 @@ export default function AddressCopy({ address }: { address: string }) {
   };
 
   return (
-    <button type="button" className={styles.copy} onClick={copy}>
-      {copied ? <CheckIcon size={16} /> : <CopyIcon size={16} />}
+    <button type="button" className={`${styles.copy} ${copied ? styles['copy--done'] : ''}`} onClick={copy}>
+      {copied ? <CheckIcon key="check" size={16} /> : <CopyIcon key="copy" size={16} />}
       <span aria-live="polite">{copied ? '복사했습니다' : '주소 복사'}</span>
     </button>
   );

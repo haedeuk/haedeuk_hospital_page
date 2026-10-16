@@ -1,0 +1,40 @@
+@use "styles/tokens/motion" as m;
+@use "styles/tokens/spacing" as s;
+@use "styles/utils/media" as media;
+
+// 화면 맨 위 3px 진행선. 이동이 길어질수록 천천히 90% 까지 다가가고, 끝나면 100% 를 채운 뒤 사라진다.
+.progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: s.$z-modal;
+  height: 3px;
+  background-color: var(--action-primary);
+  box-shadow: 0 0 8px var(--action-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  pointer-events: none;
+
+  &[data-state="loading"] {
+    opacity: 1;
+    transform: scaleX(0.9);
+    transition:
+      transform 8s cubic-bezier(0.1, 0.8, 0.2, 1),
+      opacity m.$duration-fast;
+  }
+
+  &[data-state="done"] {
+    opacity: 0;
+    transform: scaleX(1);
+    transition:
+      transform m.$duration-base m.$ease-out,
+      opacity m.$duration-slow m.$ease-standard m.$duration-base;
+  }
+
+  @include media.reduced-motion {
+    &[data-state="loading"] {
+      transform: scaleX(0.6);
+      transition: opacity m.$duration-fast;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 @use "styles/patterns/container" as c;
+@use "styles/tokens/motion" as m;
 @use "styles/tokens/spacing" as s;
 @use "styles/tokens/typography" as t;
 @use "styles/utils/media" as media;
@@ -51,6 +52,18 @@
     flex-direction: column;
     gap: s.$gap-3;
 
+    @include media.hover-supported {
+      &:hover {
+        .bento__figure img {
+          transform: scale(1.05);
+        }
+
+        .bento__caption {
+          color: var(--text-primary);
+        }
+      }
+    }
+
     &:first-child {
       grid-column: span 2;
       grid-row: span 2;
@@ -67,11 +80,17 @@
 
     img {
       object-fit: cover;
+      transition: transform 900ms m.$ease-out;
+
+      @include media.reduced-motion {
+        transition: none;
+      }
     }
   }
 
   &__caption {
     color: var(--text-secondary);
+    transition: color m.$duration-base m.$ease-standard;
 
     @include t.label-medium;
   }

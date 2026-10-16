@@ -1,0 +1,25 @@
+@use "styles/tokens/spacing" as s;
+@use "styles/tokens/typography" as t;
+
+.retry {
+  min-height: 44px;
+  padding: 0 s.$gap-6;
+  border: 0;
+  border-radius: s.$shape-md;
+  color: var(--action-on-primary);
+  background-color: var(--action-primary);
+
+  @include t.label-medium;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 s.$gap-6;
+  border: 1px solid var(--border-default);
+  border-radius: s.$shape-md;
+  color: var(--text-primary);
+
+  @include t.label-medium;
+}

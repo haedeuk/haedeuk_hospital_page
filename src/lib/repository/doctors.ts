@@ -1,5 +1,7 @@
 import 'server-only';
+import { cache } from 'react';
 import { z } from 'zod';
+import { withRetry } from '@/lib/db/retry';
 import { prisma } from '@/lib/prisma';
 import { getDoctorPhotoUrl } from '@/lib/supabase/env';
 import type { Doctor as DoctorRow } from '@/generated/prisma/client';
@@ -21,22 +23,25 @@ function toDoctor(row: DoctorRow): Doctor {
   };
 }
 
+// cache: 한 요청 안에서 같은 조회를 한 번만 한다 (예: 메타데이터와 목록이 같은 의사 목록을 읽을 때)
+// withRetry: 풀러 연결이 순간적으로 끊기면 한 번 다시 묻는다
+
 // 공개 화면: 노출 중인 의사만, 관리자가 정한 순서대로
-export async function getPublishedDoctors(): Promise<Doctor[]> {
-  const rows = await prisma.doctor.findMany({ where: { isPublished: true }, orderBy: ORDER });
+export const getPublishedDoctors = cache(async (): Promise<Doctor[]> => {
+  const rows = await withRetry(() => prisma.doctor.findMany({ where: { isPublished: true }, orderBy: ORDER }));
   return rows.map(toDoctor);
-}
+});
 
 // 관리자 화면: 숨긴 의사까지
-export async function listDoctors(): Promise<Doctor[]> {
-  const rows = await prisma.doctor.findMany({ orderBy: ORDER });
+export const listDoctors = cache(async (): Promise<Doctor[]> => {
+  const rows = await withRetry(() => prisma.doctor.findMany({ orderBy: ORDER }));
   return rows.map(toDoctor);
-}
+});
 
-export async function getDoctor(id: string): Promise<Doctor | null> {
+export const getDoctor = cache(async (id: string): Promise<Doctor | null> => {
   // 주소창에 아무 문자열이나 넣으면 uuid 캐스팅 오류가 나므로 먼저 거른다.
   if (!z.uuid().safeParse(id).success) return null;
 
-  const row = await prisma.doctor.findUnique({ where: { id } });
+  const row = await withRetry(() => prisma.doctor.findUnique({ where: { id } }));
   return row ? toDoctor(row) : null;
-}
+});
